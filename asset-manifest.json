@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/bellas-bytes-portfolio/static/css/main.a0570b4e.css",
-    "main.js": "/bellas-bytes-portfolio/static/js/main.06a7bbcb.js",
+    "main.js": "/bellas-bytes-portfolio/static/js/main.9ef6208b.js",
     "static/js/713.c0e3f5ca.chunk.js": "/bellas-bytes-portfolio/static/js/713.c0e3f5ca.chunk.js",
     "static/js/453.595bd2ed.chunk.js": "/bellas-bytes-portfolio/static/js/453.595bd2ed.chunk.js",
     "static/js/208.5db68ec7.chunk.js": "/bellas-bytes-portfolio/static/js/208.5db68ec7.chunk.js",
@@ -14,7 +14,7 @@
     "static/js/23.4215d6ee.chunk.js": "/bellas-bytes-portfolio/static/js/23.4215d6ee.chunk.js",
     "index.html": "/bellas-bytes-portfolio/index.html",
     "main.a0570b4e.css.map": "/bellas-bytes-portfolio/static/css/main.a0570b4e.css.map",
-    "main.06a7bbcb.js.map": "/bellas-bytes-portfolio/static/js/main.06a7bbcb.js.map",
+    "main.9ef6208b.js.map": "/bellas-bytes-portfolio/static/js/main.9ef6208b.js.map",
     "713.c0e3f5ca.chunk.js.map": "/bellas-bytes-portfolio/static/js/713.c0e3f5ca.chunk.js.map",
     "453.595bd2ed.chunk.js.map": "/bellas-bytes-portfolio/static/js/453.595bd2ed.chunk.js.map",
     "208.5db68ec7.chunk.js.map": "/bellas-bytes-portfolio/static/js/208.5db68ec7.chunk.js.map",
@@ -28,6 +28,6 @@
   },
   "entrypoints": [
     "static/css/main.a0570b4e.css",
-    "static/js/main.06a7bbcb.js"
+    "static/js/main.9ef6208b.js"
   ]
 }
