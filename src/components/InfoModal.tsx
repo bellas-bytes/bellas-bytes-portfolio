@@ -69,107 +69,95 @@ export default function InfoModal({ activePanel, onClose }: SidebarProps) {
           )}
 
           {activePanel === "projects" && (
-            <section>
-              <h2 className="text-xl font-bold">🚧 Projects</h2>
-              <div className="space-y-6 mt-4">
-                {/* KnowItAll */}
-                <div>
-                  <h3 className="text-lg font-semibold">
-                    📚{" "}
-                    <a
-                      href="https://vocal-chiller-450923-k8.firebaseapp.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="underline text-blue-600 dark:text-blue-400 hover:text-blue-800"
-                    >
-                      KnowItAll
-                    </a>
-                  </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    JavaScript, Django, React, GCP
-                  </p>
-                  <ul className="list-disc list-inside mt-1 space-y-1">
-                    <li>
-                      Developed a study assistant website deployed on GCP
-                      featuring an AI-powered chatbot for interactive learning.
-                    </li>
-                    <li>
-                      Implemented quiz generation functionality to help users
-                      reinforce their knowledge.
-                    </li>
-                    <li>
-                      Integrated a Retrieval-Augmented Generation (RAG) system
-                      with Gemini to personalize chatbot responses.
-                    </li>
-                  </ul>
-                </div>
+  <section className="max-h-[60vh] overflow-y-auto pr-2">
+    <h2 className="text-xl font-bold">🚧 Projects</h2>
+    <div className="space-y-4 mt-4 text-sm">
+      {/* KnowItAll */}
+      <div>
+        <h3 className="text-base font-semibold">
+          📚{" "}
+          <a
+            href="https://vocal-chiller-450923-k8.firebaseapp.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline text-blue-600 dark:text-blue-400 hover:text-blue-800"
+          >
+            KnowItAll
+          </a>
+        </h3>
+        <p className="text-xs text-gray-600 dark:text-gray-400">
+          JavaScript, Django, React, GCP
+        </p>
+        <ul className="list-disc list-inside mt-1 space-y-1">
+          <li>
+            Developed a study assistant website deployed on GCP with an AI chatbot.
+          </li>
+          <li>Implemented quiz generation for reinforcement learning.</li>
+          <li>
+            Integrated RAG with Gemini to personalize chatbot responses.
+          </li>
+        </ul>
+      </div>
 
-                {/* Mecca */}
-                <div>
-                  <h3 className="text-lg font-semibold">
-                    💻{" "}
-                    <a
-                      href="https://github.com/erinkim16/Scriptorium"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="underline text-blue-600 dark:text-blue-400 hover:text-blue-800"
-                    >
-                      Scriptorium
-                    </a>
-                  </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    React, TypeScript, Next.js, Prisma, Docker
-                  </p>
-                  <ul className="list-disc list-inside mt-1 space-y-1">
-                    <li>
-                      Built a platform where users write, run, and fork code
-                      using Docker containers.
-                    </li>
-                    <li>
-                      Developed a blog system with embedded code execution and
-                      user commenting.
-                    </li>
-                    <li>
-                      Implemented scalable backend using Next.js API routes and
-                      Prisma ORM.
-                    </li>
-                  </ul>
-                </div>
+      {/* Scriptorium */}
+      <div>
+        <h3 className="text-base font-semibold">
+          💻{" "}
+          <a
+            href="https://github.com/erinkim16/Scriptorium"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline text-blue-600 dark:text-blue-400 hover:text-blue-800"
+          >
+            Scriptorium
+          </a>
+        </h3>
+        <p className="text-xs text-gray-600 dark:text-gray-400">
+          React, TypeScript, Next.js, Prisma, Docker
+        </p>
+        <ul className="list-disc list-inside mt-1 space-y-1">
+          <li>
+            Built a platform to write, run, and fork code with Docker containers.
+          </li>
+          <li>
+            Added blog posts with executable code and comments.
+          </li>
+          <li>
+            Scalable backend using Next.js API and Prisma ORM.
+          </li>
+        </ul>
+      </div>
 
-                {/* UniVerse */}
-                <div>
-                  <h3 className="text-lg font-semibold">
-                    🗺️{" "}
-                    <a
-                      href="https://github.com/TheWeeWum/UniVerse"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="underline text-blue-600 dark:text-blue-400 hover:text-blue-800"
-                    >
-                      UniVerse
-                    </a>
-                  </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Google Maps API, Java, Git
-                  </p>
-                  <ul className="list-disc list-inside mt-1 space-y-1">
-                    <li>
-                      Built a platform for UofT students to rate, review, and
-                      favourite campus buildings.
-                    </li>
-                    <li>
-                      Integrated Google Maps API to display campus navigation
-                      from coordinates.
-                    </li>
-                    <li>
-                      Used clean architecture and design patterns for modular,
-                      maintainable code.
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </section>
-          )}
+      {/* UniVerse */}
+      <div>
+        <h3 className="text-base font-semibold">
+          🗺️{" "}
+          <a
+            href="https://github.com/TheWeeWum/UniVerse"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline text-blue-600 dark:text-blue-400 hover:text-blue-800"
+          >
+            UniVerse
+          </a>
+        </h3>
+        <p className="text-xs text-gray-600 dark:text-gray-400">
+          Google Maps API, Java, Git
+        </p>
+        <ul className="list-disc list-inside mt-1 space-y-1">
+          <li>
+            Created UofT campus map with reviews and favorites.
+          </li>
+          <li>Used Google Maps API for building location display.</li>
+          <li>
+            Employed clean architecture and design patterns for maintainability.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+)}
+
 
           {activePanel === "education" && (
             <section>
