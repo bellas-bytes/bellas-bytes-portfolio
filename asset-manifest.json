@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/bellas-bytes-portfolio/static/css/main.827a0bc5.css",
-    "main.js": "/bellas-bytes-portfolio/static/js/main.b3e94735.js",
+    "main.css": "/bellas-bytes-portfolio/static/css/main.a0570b4e.css",
+    "main.js": "/bellas-bytes-portfolio/static/js/main.06a7bbcb.js",
     "static/js/713.c0e3f5ca.chunk.js": "/bellas-bytes-portfolio/static/js/713.c0e3f5ca.chunk.js",
     "static/js/453.595bd2ed.chunk.js": "/bellas-bytes-portfolio/static/js/453.595bd2ed.chunk.js",
     "static/js/208.5db68ec7.chunk.js": "/bellas-bytes-portfolio/static/js/208.5db68ec7.chunk.js",
@@ -13,8 +13,8 @@
     "static/js/160.21c07915.chunk.js": "/bellas-bytes-portfolio/static/js/160.21c07915.chunk.js",
     "static/js/23.4215d6ee.chunk.js": "/bellas-bytes-portfolio/static/js/23.4215d6ee.chunk.js",
     "index.html": "/bellas-bytes-portfolio/index.html",
-    "main.827a0bc5.css.map": "/bellas-bytes-portfolio/static/css/main.827a0bc5.css.map",
-    "main.b3e94735.js.map": "/bellas-bytes-portfolio/static/js/main.b3e94735.js.map",
+    "main.a0570b4e.css.map": "/bellas-bytes-portfolio/static/css/main.a0570b4e.css.map",
+    "main.06a7bbcb.js.map": "/bellas-bytes-portfolio/static/js/main.06a7bbcb.js.map",
     "713.c0e3f5ca.chunk.js.map": "/bellas-bytes-portfolio/static/js/713.c0e3f5ca.chunk.js.map",
     "453.595bd2ed.chunk.js.map": "/bellas-bytes-portfolio/static/js/453.595bd2ed.chunk.js.map",
     "208.5db68ec7.chunk.js.map": "/bellas-bytes-portfolio/static/js/208.5db68ec7.chunk.js.map",
@@ -27,7 +27,7 @@
     "23.4215d6ee.chunk.js.map": "/bellas-bytes-portfolio/static/js/23.4215d6ee.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.827a0bc5.css",
-    "static/js/main.b3e94735.js"
+    "static/css/main.a0570b4e.css",
+    "static/js/main.06a7bbcb.js"
   ]
 }
