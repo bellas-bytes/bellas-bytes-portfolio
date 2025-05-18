@@ -1,17 +1,29 @@
 import { useRef, useState, useEffect } from 'react';
-import Spline from '@splinetool/react-spline';
+// import Spline from '@splinetool/react-spline';
 import Sidebar from './components/SideBar';
 import { FiSun, FiMoon } from 'react-icons/fi';
+import React, { Suspense } from 'react';
+import TypingLoader from './components/TypingLoader';
 
+
+const LazySpline = React.lazy(() => import('@splinetool/react-spline'));
 
 export default function App() {
   const [activePanel, setActivePanel] = useState<string | null>(null);
+ // const [isLoading, setIsLoading] = useState(true);
+  const [splineReady, setSplineReady] = useState(false);
+  const [delayPassed, setDelayPassed] = useState(false);
   const splineRef = useRef<any>(null);
 
   // 🌙 Dark Mode: detect system preference on first load
   const [darkMode, setDarkMode] = useState(() =>
     window.matchMedia('(prefers-color-scheme: dark)').matches
   );
+
+  useEffect(() => {
+    const timer = setTimeout(() => setDelayPassed(true), 3500);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const root = window.document.documentElement;
@@ -54,8 +66,6 @@ export default function App() {
   useEffect(() => {
     const keyMap: Record<string, { panel: string; name: string }> = {
       '`': { panel: 'terminal', name: 'terminal' },
-      l: { panel: 'linkedin', name: 'linkedin' },
-      g: { panel: 'github', name: 'github' },
       e: { panel: 'education', name: 'education' },
       t: { panel: 'tech-stack', name: 'tech-stack' },
       p: { panel: 'projects', name: 'projects' },
@@ -68,7 +78,7 @@ export default function App() {
         handlePanelToggle('heart');
         triggerKeyAnimation('heart');
       } else if (keyMap[e.key]) {
-        if (e.key === 'g') {
+        if (e.key === 'Shift') {
           window.open('https://github.com/bellas-bytes', '_blank');
           return;
         }
@@ -85,20 +95,22 @@ export default function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []); 
 
+  const isLoading = !(splineReady && delayPassed);
+
   return (
     <div className={`transition-opacity duration-500 ${darkMode ? 'opacity-100' : 'opacity-100'}`}>
-      {/* 🌗 Dark mode toggle button */}
-     <button
-  onClick={() => setDarkMode(!darkMode)}
-  className="fixed top-4 left-4 z-[10000] p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-black dark:text-white shadow transition-all duration-300"
-  aria-label="Toggle dark mode"
->
-  {darkMode ? (
-  <FiSun className="w-5 h-5 transition-transform duration-300 rotate-0 scale-100" />
-) : (
-  <FiMoon className="w-5 h-5 transition-transform duration-300 rotate-180 scale-110" />
-)}
-</button>
+        {/* 🌗 Dark mode toggle button */}
+      <button
+    onClick={() => setDarkMode(!darkMode)}
+    className="fixed top-4 left-4 z-[10000] p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-black dark:text-white shadow transition-all duration-300"
+    aria-label="Toggle dark mode"
+  >
+    {darkMode ? (
+    <FiSun className="w-5 h-5 transition-transform duration-300 rotate-0 scale-100" />
+  ) : (
+    <FiMoon className="w-5 h-5 transition-transform duration-300 rotate-180 scale-110" />
+  )}
+  </button>
 
       {/* 📂 Sidebar overlay */}
       {activePanel && (
@@ -121,9 +133,14 @@ export default function App() {
       <div className="w-screen h-screen flex items-center justify-between bg-white dark:bg-gray-950 text-black dark:text-white overflow-hidden relative transition-colors duration-300">
         {/* 🎹 Spline */}
         <div className="w-1/2 h-full z-0">
-          <Spline
+          <Suspense fallback={null}>
+            <LazySpline
             scene="https://prod.spline.design/C62V1tbFur6alYMM/scene.splinecode"
-            onLoad={(splineApp) => (splineRef.current = splineApp)}
+          onLoad={(app) => {
+            splineRef.current = app;
+            setTimeout(() => setSplineReady(true), 300);
+            }}
+            
             onSplineMouseDown={(e) => {
             console.log('Clicked name:', e.target?.name);
             const target = e.target as { name?: string };
@@ -131,15 +148,6 @@ export default function App() {
 
             if (!target.name) return;
 
-            if (target.name?.toLowerCase().includes('github')) {
-            window.open('https://github.com/bellas-bytes', '_blank');
-            return;
-          }
-
-            if (target.name?.toLowerCase().includes('github')) {
-            window.open('https://github.com/bellas-bytes', '_blank');
-            return;
-          }
             if (nameToPanel[target.name]) {
               handlePanelToggle(nameToPanel[target.name]);
               setTimeout(() => {
@@ -147,9 +155,24 @@ export default function App() {
               }, 100);
             }
           }}
-          />
-        </div>
+           onSplineMouseUp={(e) => {
+            const target = e.target as { name?: string };
+            if (!target.name) return;
 
+            // External links triggered on mouseUp
+            if (target.name === 'github') {
+              window.open('https://github.com/bellas-bytes', '_blank');
+            }
+
+            if (target.name === 'linkedin') {
+              window.open('https://linkedin.com/in/nguyenisabella', '_blank');
+            }
+          }}
+          />
+          </Suspense>
+        </div>
+          
+      {isLoading &&  <TypingLoader />}
         {/* 👋 Intro */}
         <div className="w-1/2 h-full flex items-center justify-center px-12 transition-colors duration-300">
           <div>
