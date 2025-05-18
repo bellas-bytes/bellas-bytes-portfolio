@@ -1,10 +1,10 @@
 // components/TypingLoader.tsx
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 const fullText = "Warming up Isabella’s keyboard... ⌨️";
 
 export default function TypingLoader() {
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -19,7 +19,9 @@ export default function TypingLoader() {
 
   return (
     <div className="fixed inset-0 bg-white dark:bg-gray-950 z-[9999] flex items-center justify-center">
-      <span className="text-xl font-mono text-gray-700 dark:text-gray-200">{text}</span>
+      <span className="text-xl font-mono text-gray-700 dark:text-gray-200">
+        {text}
+      </span>
     </div>
   );
 }

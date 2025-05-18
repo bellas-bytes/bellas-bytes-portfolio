@@ -1,10 +1,10 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from "react";
 
 export default function TerminalPanel({ onClose }: { onClose: () => void }) {
   const [history, setHistory] = useState<string[]>([
-    'Welcome to IsabellaOS! ✨ Type `help` for commands.',
+    "Welcome to IsabellaOS! ✨ Type `help` for commands.",
   ]);
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -15,35 +15,35 @@ export default function TerminalPanel({ onClose }: { onClose: () => void }) {
   useEffect(() => {
     scrollRef.current?.scrollTo({
       top: scrollRef.current.scrollHeight,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   }, [history]);
 
   const commands: Record<string, string | (() => string)> = {
     help: `Available commands:\n- help\n- about\n- clear\n- coffee\n- whoami\n- github`,
     about: `I'm Isabella — a Computer Science Specialist at the UofT!\n I love to keep things moving, which is evident in my love for backend and working out`,
-    whoami: 'Developer, creator, sweet treat enthusiast',
+    whoami: "Developer, creator, sweet treat enthusiast",
     github: () => {
-      window.open('https://github.com/bellas-bytes', '_blank');
-      return 'Opening GitHub...';
+      window.open("https://github.com/bellas-bytes", "_blank");
+      return "Opening GitHub...";
     },
-    clear: '',
+    clear: "",
     coffee: () => {
-        const user = 'missisabellan';
-        const domain = 'gmail.com';
-        const mail = `${user}@${domain}`;
-        return `☕ Let’s chat over coffee — shoot me an email at ${mail}`;
-    }
+      const user = "missisabellan";
+      const domain = "gmail.com";
+      const mail = `${user}@${domain}`;
+      return `☕ Let’s chat over coffee — shoot me an email at ${mail}`;
+    },
   };
 
   const handleCommand = () => {
     const trimmed = input.trim();
     const output =
-      typeof commands[trimmed] === 'function'
+      typeof commands[trimmed] === "function"
         ? (commands[trimmed] as () => string)()
-        : commands[trimmed] ?? `Command not found: ${trimmed}`;
+        : (commands[trimmed] ?? `Command not found: ${trimmed}`);
 
-    if (trimmed === 'clear') {
+    if (trimmed === "clear") {
       setHistory([]);
     } else {
       setHistory((prev) => [
@@ -53,14 +53,13 @@ export default function TerminalPanel({ onClose }: { onClose: () => void }) {
       ]);
     }
 
-    setInput('');
+    setInput("");
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') handleCommand();
-    if (e.key === 'Escape') onClose();
+    if (e.key === "Enter") handleCommand();
+    if (e.key === "Escape") onClose();
   };
-  
 
   return (
     <div
@@ -80,7 +79,9 @@ export default function TerminalPanel({ onClose }: { onClose: () => void }) {
           className="overflow-y-auto space-y-1 transition-all"
         >
           {history.map((line, i) => (
-            <div key={i} className="whitespace-pre-line">{line}</div>
+            <div key={i} className="whitespace-pre-line">
+              {line}
+            </div>
           ))}
           <div className="flex items-center">
             <span className="mr-2 text-[#354b6b] dark:text-[#87a5d3]">$</span>
