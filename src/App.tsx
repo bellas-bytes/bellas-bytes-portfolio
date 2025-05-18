@@ -1,18 +1,18 @@
 import { useRef, useState, useEffect } from 'react';
-// import Spline from '@splinetool/react-spline';
 import Sidebar from './components/SideBar';
 import { FiSun, FiMoon } from 'react-icons/fi';
 import React, { Suspense } from 'react';
 import TypingLoader from './components/TypingLoader';
-
+import TerminalPanel from './components/TerminalPanel';
 
 const LazySpline = React.lazy(() => import('@splinetool/react-spline'));
 
 export default function App() {
   const [activePanel, setActivePanel] = useState<string | null>(null);
- // const [isLoading, setIsLoading] = useState(true);
   const [splineReady, setSplineReady] = useState(false);
   const [delayPassed, setDelayPassed] = useState(false);
+  const [showTerminal, setShowTerminal] = useState(false);
+  
   const splineRef = useRef<any>(null);
 
   // 🌙 Dark Mode: detect system preference on first load
@@ -42,7 +42,6 @@ export default function App() {
   const nameToPanel: Record<string, string> = {
     'projects': 'projects',
     'education': 'education',
-    'terminal': 'terminal',
     'about-me': 'about-me',
     'tech-stack': 'tech-stack',
     'heart': 'heart',
@@ -63,37 +62,48 @@ export default function App() {
     }, 100);
   };
 
-  useEffect(() => {
-    const keyMap: Record<string, { panel: string; name: string }> = {
-      '`': { panel: 'terminal', name: 'terminal' },
-      e: { panel: 'education', name: 'education' },
-      t: { panel: 'tech-stack', name: 'tech-stack' },
-      p: { panel: 'projects', name: 'projects' },
-      c: { panel: 'career', name: 'career' },
-      Enter: { panel: 'about-me', name: 'about-me' },
-    };
+  // useEffect(() => {
+  //   const keyMap: Record<string, { panel: string; name: string }> = {
+  //     e: { panel: 'education', name: 'education' },
+  //     t: { panel: 'tech-stack', name: 'tech-stack' },
+  //     p: { panel: 'projects', name: 'projects' },
+  //     c: { panel: 'career', name: 'career' },
+  //     Enter: { panel: 'about-me', name: 'about-me' },
+  //   };
 
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.ctrlKey) {
-        handlePanelToggle('heart');
-        triggerKeyAnimation('heart');
-      } else if (keyMap[e.key]) {
-        if (e.key === 'Shift') {
-          window.open('https://github.com/bellas-bytes', '_blank');
-          return;
-        }
-        if (e.key === 'l') {
-          window.open('https://linkedin.com/in/nguyenisabella', '_blank');
-          return;
-        }
-        handlePanelToggle(keyMap[e.key].panel);
-        triggerKeyAnimation(keyMap[e.key].name);
-      }
-    };
+  //   const handleKeyDown = (e: KeyboardEvent) => {
+  //     const target = e.target as HTMLElement;
+  //     const isTyping =
+  //     target.tagName === 'INPUT' ||
+  //     target.tagName === 'TEXTAREA' ||
+  //     target.isContentEditable;
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []); 
+  //   if (isTyping) return;
+  //     if (e.ctrlKey) {
+  //       handlePanelToggle('heart');
+  //       triggerKeyAnimation('heart');
+  //     } else if (keyMap[e.key]) {
+  //       if (e.key === 'Shift') {
+  //         window.open('https://github.com/bellas-bytes', '_blank');
+  //         return;
+  //       }
+  //       if (e.key === 'l') {
+  //         window.open('https://linkedin.com/in/nguyenisabella', '_blank');
+  //         return;
+  //       }
+  //       if (e.key === '`') {
+  //         setShowTerminal((prev) => !prev);
+  //         triggerKeyAnimation('terminal');
+  //         return;
+  //       }
+  //       handlePanelToggle(keyMap[e.key].panel);
+  //       triggerKeyAnimation(keyMap[e.key].name);
+  //     }
+  //   };
+
+  //   window.addEventListener('keydown', handleKeyDown);
+  //   return () => window.removeEventListener('keydown', handleKeyDown);
+  // }, []); 
 
   const isLoading = !(splineReady && delayPassed);
 
@@ -145,7 +155,7 @@ export default function App() {
           </div>
         </div>
         {/* 🎹 Spline */}
-       <div className="w-full md:w-1/2 overflow-hidden h-[50vh] md:h-[80vh] z-0 scale-[1.2] md:scale-[1.4] transition-transform duration-300">
+       <div className="w-full md:w-1/2 overflow-hidden h-[50vh] md:h-[75vh] z-0 scale-[1.2] md:scale-[1] transition-transform duration-300">
           <Suspense fallback={null}>
             <LazySpline
             scene="https://prod.spline.design/C62V1tbFur6alYMM/scene.splinecode"
@@ -180,12 +190,22 @@ export default function App() {
             if (target.name === 'linkedin') {
               window.open('https://linkedin.com/in/nguyenisabella', '_blank');
             }
+
+            if (target.name === 'terminal'){
+              setShowTerminal((prev) => !prev);
+              triggerKeyAnimation('terminal');
+            }
           }}
           />
           </Suspense>
         </div>
           
       {isLoading &&  <TypingLoader />}
+      {showTerminal && (
+        <div className="fixed bottom-0 left-0 right-0 z-[10001] px-4 pb-6">
+          <TerminalPanel onClose={() => setShowTerminal(false)} />
+        </div>
+      )}
       </div>
     </div>
   );
