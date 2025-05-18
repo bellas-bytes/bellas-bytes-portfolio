@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+canvas + div[style*="position: absolute"] {
+  display: none !important;
+}

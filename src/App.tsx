@@ -123,16 +123,29 @@ export default function App() {
       {/* 📂 Sidebar */}
       {activePanel && (
         <div
-          className="fixed top-0 right-0 h-full w-full md:w-1/2 bg-white dark:bg-gray-900 text-black dark:text-white z-[9999] p-6 transition-transform duration-300 translate-x-0"
+          className="fixed top-0 left-0 h-full w-full md:w-1/2 bg-white dark:bg-gray-900 text-black dark:text-white z-[9999] p-6 transition-transform duration-300 translate-x-0"
         >
           <Sidebar activePanel={activePanel} onClose={() => handlePanelToggle()} />
         </div>
       )}
 
       {/* Main layout */}
-      <div className="w-screen h-screen flex items-center justify-between bg-white dark:bg-gray-950 text-black dark:text-white overflow-hidden relative transition-colors duration-300">
+     <div className="flex flex-col md:flex-row items-center justify-center w-screen h-screen overflow-hidden bg-white dark:bg-gray-950 text-black dark:text-white transition-colors duration-300 px-4 py-6 md:px-12 md:py-0 gap-4 md:gap-4">
+
+        {/* 👋 Intro */}
+         <div className="w-full md:w-1/2 flex flex-col items-center justify-center px-4 py-1 md:px-8 md:py-0 transition-colors duration-300">
+          <div>
+            <h1 className="text-5xl font-quicksand text-gray-800 dark:text-white mb-4 transition-colors">
+              Hi, I'm Isabella 💻
+            </h1>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-md transition-colors">
+              I'm a frontend developer and machine learning enthusiast.
+              I build things that are useful, beautiful, and fun.
+            </p>
+          </div>
+        </div>
         {/* 🎹 Spline */}
-        <div className="w-1/2 h-full z-0">
+       <div className="w-full md:w-1/2 overflow-hidden h-[50vh] md:h-[80vh] z-0 scale-[1.2] md:scale-[1.4] transition-transform duration-300">
           <Suspense fallback={null}>
             <LazySpline
             scene="https://prod.spline.design/C62V1tbFur6alYMM/scene.splinecode"
@@ -173,18 +186,6 @@ export default function App() {
         </div>
           
       {isLoading &&  <TypingLoader />}
-        {/* 👋 Intro */}
-        <div className="w-1/2 h-full flex items-center justify-center px-12 transition-colors duration-300">
-          <div>
-            <h1 className="text-5xl font-quicksand text-gray-800 dark:text-white mb-4 transition-colors">
-              Hi, I'm Isabella 💻
-            </h1>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-md transition-colors">
-              I'm a frontend developer and machine learning enthusiast.
-              I build things that are useful, beautiful, and fun.
-            </p>
-          </div>
-        </div>
       </div>
     </div>
   );
