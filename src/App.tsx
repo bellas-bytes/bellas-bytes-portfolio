@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
-import Sidebar from './components/SideBar';
+import InfoModal from './components/InfoModal';
 import { FiSun, FiMoon } from 'react-icons/fi';
 import React, { Suspense } from 'react';
 import TypingLoader from './components/TypingLoader';
@@ -131,14 +131,7 @@ export default function App() {
       )}
 
       {/* 📂 Sidebar */}
-      {activePanel && (
-        <div
-          className="fixed top-0 left-0 h-full w-full md:w-1/2 bg-white dark:bg-gray-900 text-black dark:text-white z-[9999] p-6 transition-transform duration-300 translate-x-0"
-        >
-          <Sidebar activePanel={activePanel} onClose={() => handlePanelToggle()} />
-        </div>
-      )}
-
+      <InfoModal activePanel={activePanel} onClose={() => handlePanelToggle()} />
       {/* Main layout */}
      <div className="flex flex-col md:flex-row items-center justify-center w-screen h-screen overflow-hidden bg-white dark:bg-gray-950 text-black dark:text-white transition-colors duration-300 px-4 py-6 md:px-12 md:py-0 gap-4 md:gap-4">
 
