@@ -6,7 +6,7 @@ Welcome to **Bella's Bytes** — my digital playground where design meets dev, a
 
 ## 🌐 Live Demo
 
-Check it out live here: [https://yourusername.github.io/bellas-bytes](https://yourusername.github.io/bellas-bytes)
+Check it out live here:[https://bellas-bytes.github.io/bellas-bytes-portfolio/](https://bellas-bytes.github.io/bellas-bytes-portfolio/)
 
 ---
 
