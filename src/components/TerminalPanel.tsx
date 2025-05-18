@@ -20,15 +20,20 @@ export default function TerminalPanel({ onClose }: { onClose: () => void }) {
   }, [history]);
 
   const commands: Record<string, string | (() => string)> = {
-    help: `Available commands:\n- help\n- about\n- clear\n- love\n- cat\n- github`,
-    about: `I'm Isabella — a frontend developer & ML enthusiast 💻🧠`,
-    love: 'You are loved 💕',
-    cat: 'meow 🐱',
+    help: `Available commands:\n- help\n- about\n- clear\n- coffee\n- whoami\n- github`,
+    about: `I'm Isabella — a Computer Science Specialist at the UofT!\n I love to keep things moving, which is evident in my love for backend and working out`,
+    whoami: 'Developer, creator, sweet treat enthusiast',
     github: () => {
       window.open('https://github.com/bellas-bytes', '_blank');
       return 'Opening GitHub...';
     },
     clear: '',
+    coffee: () => {
+        const user = 'missisabellan';
+        const domain = 'gmail.com';
+        const mail = `${user}@${domain}`;
+        return `☕ Let’s chat over coffee — shoot me an email at ${mail}`;
+    }
   };
 
   const handleCommand = () => {
@@ -55,6 +60,7 @@ export default function TerminalPanel({ onClose }: { onClose: () => void }) {
     if (e.key === 'Enter') handleCommand();
     if (e.key === 'Escape') onClose();
   };
+  
 
   return (
     <div
