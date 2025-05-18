@@ -40,7 +40,6 @@
 .animate-fadeIn {
   animation: fadeIn 0.3s ease-out;
 }
-
 @keyframes heart-float {
   0% {
     opacity: 1;
