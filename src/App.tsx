@@ -5,6 +5,7 @@ import React, { Suspense } from "react";
 import TypingLoader from "./components/TypingLoader";
 import TerminalPanel from "./components/TerminalPanel";
 
+
 const LazySpline = React.lazy(() => import("@splinetool/react-spline"));
 
 export default function App() {
@@ -123,16 +124,15 @@ export default function App() {
         <div className="w-full md:w-1/2 flex flex-col items-center justify-center px-4 py-1 md:px-8 md:py-0 transition-colors duration-300">
           <div>
             <h1 className="text-5xl font-quicksand text-gray-800 dark:text-white mb-4 transition-colors">
-              Hi, I'm Isabella 💻
+              Hi, I'm Isabella!
             </h1>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-md transition-colors">
-              I'm a frontend developer and machine learning enthusiast. I build
-              things that are useful, beautiful, and fun.
+              I’m a backend + DevOps developer—I make the behind-the-scenes run smoother (and maybe a little cuter)
             </p>
           </div>
         </div>
         {/* 🎹 Spline */}
-        <div className="w-full md:w-1/2 overflow-hidden h-[50vh] md:h-[75vh] z-0 scale-[1.2] md:scale-[1] transition-transform duration-300">
+        <div className="w-full md:w-1/2 overflow-hidden h-[45vh] md:h-[75vh] z-0 scale-[1.05] md:scale-[1] transition-transform duration-300">
           <Suspense fallback={null}>
             <LazySpline
               scene="https://prod.spline.design/C62V1tbFur6alYMM/scene.splinecode"
