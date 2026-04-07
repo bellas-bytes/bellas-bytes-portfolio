@@ -1,17 +1,32 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: "class",
   content: ["./src/**/*.{js,ts,jsx,tsx}", "./public/index.html"],
   theme: {
     extend: {
+      fontFamily: {
+        pixel: ['"Press Start 2P"', "monospace"],
+      },
+      colors: {
+        game: {
+          bg: "#0a0a1a",
+          panel: "#0d1117",
+          accent: "#4a9eff",
+          "accent-dim": "#1a3a5c",
+          border: "#1e3a5f",
+        },
+      },
       keyframes: {
-        "heart-float": {
-          "0%": { opacity: 1, transform: "translateY(0) scale(1)" },
-          "100%": { opacity: 0, transform: "translateY(-60px) scale(1.5)" },
+        "glow-pulse": {
+          "0%, 100%": {
+            filter: "drop-shadow(0 0 4px rgba(74, 158, 255, 0.3))",
+          },
+          "50%": {
+            filter: "drop-shadow(0 0 12px rgba(74, 158, 255, 0.7))",
+          },
         },
       },
       animation: {
-        "heart-float": "heart-float 1s ease-out forwards",
+        glow: "glow-pulse 2s ease-in-out infinite",
       },
     },
   },

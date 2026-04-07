@@ -1,222 +1,117 @@
-import { useRef, useState, useEffect } from "react";
-import InfoModal from "./components/InfoModal";
-import { FiSun, FiMoon } from "react-icons/fi";
-import React, { Suspense } from "react";
-import TypingLoader from "./components/TypingLoader";
-import TerminalPanel from "./components/TerminalPanel";
-
-
-const LazySpline = React.lazy(() => import("@splinetool/react-spline"));
+import { useEffect, useRef } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useGameState } from "./hooks/useGameState";
+import { useSfx } from "./hooks/useSfx";
+import LoadingScreen from "./components/LoadingScreen";
+import TripSequence from "./components/TripSequence";
+import GameHUD from "./components/GameHUD";
+import DroppedItems from "./components/DroppedItems";
+import SectionPanel from "./components/SectionPanel";
+import PixelCharacter from "./components/PixelCharacter";
 
 export default function App() {
-  const [activePanel, setActivePanel] = useState<string | null>(null);
-  const [splineReady, setSplineReady] = useState(false);
-  const [delayPassed, setDelayPassed] = useState(false);
-  const [showTerminal, setShowTerminal] = useState(false);
-  const [mouseHearts, setMouseHearts] = useState<
-    { x: number; y: number; id: number }[]
-  >([]);
-  const heartIdRef = useRef(0);
+  const {
+    phase,
+    activeSection,
+    finishLoading,
+    finishTripping,
+    openSection,
+    closeSection,
+  } = useGameState();
 
-  const splineRef = useRef<any>(null);
+  const { muted, play, toggleMute } = useSfx();
 
-  // 🌙 Dark Mode: detect system preference on first load
-  const [darkMode, setDarkMode] = useState(
-    () => window.matchMedia("(prefers-color-scheme: dark)").matches,
-  );
-
+  // Play drop SFX when exploring phase mounts (items burst out)
+  const hasPlayedDrop = useRef(false);
   useEffect(() => {
-    const timer = setTimeout(() => setDelayPassed(true), 3500);
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    const root = window.document.documentElement;
-    if (darkMode) {
-      root.classList.add("dark");
-    } else {
-      root.classList.remove("dark");
+    if (phase === "exploring" && !hasPlayedDrop.current) {
+      hasPlayedDrop.current = true;
+      play("drop");
     }
-  }, [darkMode]);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const id = heartIdRef.current++;
-      const newHeart = { x: e.clientX, y: e.clientY, id };
-      setMouseHearts((prev) => [...prev, newHeart]);
-
-      setTimeout(() => {
-        setMouseHearts((prev) => prev.filter((heart) => heart.id !== id));
-      }, 1000);
-    };
-
-    if (activePanel === "heart") {
-      window.addEventListener("mousemove", handleMouseMove);
-    }
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, [activePanel]);
-
-  const handlePanelToggle = (panel?: string) => {
-    if (!panel) setActivePanel(null);
-    else setActivePanel((prev) => (prev === panel ? null : panel));
-  };
-
-  const nameToPanel: Record<string, string> = {
-    projects: "projects",
-    education: "education",
-    "about-me": "about-me",
-    "tech-stack": "tech-stack",
-    career: "career",
-  };
-
-  const triggerClickAnimation = (name: string) => {
-    splineRef.current?.emitEvent("mouseDown", name);
-    setTimeout(() => {
-      splineRef.current?.emitEvent("mouseUp", name);
-    }, 100);
-  };
-
-  const triggerKeyAnimation = (name: string) => {
-    splineRef.current?.emitEvent("keyDown", name);
-    setTimeout(() => {
-      splineRef.current?.emitEvent("keyUp", name);
-    }, 100);
-  };
-
-  const isLoading = !(splineReady && delayPassed);
+  }, [phase, play]);
 
   return (
-    <div
-      className={`transition-opacity duration-500 ${darkMode ? "opacity-100" : "opacity-100"}`}
-    >
-      {/* 🌗 Dark mode toggle button */}
-      <button
-        onClick={() => setDarkMode(!darkMode)}
-        className="fixed top-4 left-4 z-[10000] p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-black dark:text-white shadow transition-all duration-300"
-        aria-label="Toggle dark mode"
-      >
-        {darkMode ? (
-          <FiSun className="w-5 h-5 transition-transform duration-300 rotate-0 scale-100" />
-        ) : (
-          <FiMoon className="w-5 h-5 transition-transform duration-300 rotate-180 scale-110" />
+    <div className="w-screen h-screen overflow-hidden bg-[#0a0a1a]">
+      <AnimatePresence mode="wait">
+        {/* Phase 1: Loading */}
+        {phase === "loading" && (
+          <LoadingScreen key="loading" onComplete={finishLoading} />
         )}
-      </button>
 
-      {/* 📂 Sidebar overlay */}
-      {activePanel && (
-        <div
-          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[9998]"
-          onClick={() => handlePanelToggle()}
-        />
-      )}
+        {/* Phase 2: Trip & skid */}
+        {phase === "tripping" && (
+          <TripSequence
+            key="tripping"
+            onComplete={finishTripping}
+            onPlaySfx={play}
+          />
+        )}
+      </AnimatePresence>
 
-      {/* 📂 Sidebar */}
-      <InfoModal
-        activePanel={activePanel}
-        onClose={() => handlePanelToggle()}
-      />
-      {/* Main layout */}
-      <div className="flex flex-col md:flex-row items-center justify-center w-screen h-screen overflow-hidden bg-white dark:bg-gray-950 text-black dark:text-white transition-colors duration-300 px-4 py-6 md:px-12 md:py-0 gap-4 md:gap-4">
-        {/* 👋 Intro */}
-        <div className="w-full md:w-1/2 flex flex-col items-center justify-center px-4 py-1 md:px-8 md:py-0 transition-colors duration-300">
-          <div>
-            <h1 className="text-5xl font-quicksand text-gray-800 dark:text-white mb-4 transition-colors">
-              Hi, I'm Isabella!
-            </h1>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-md transition-colors">
-              I’m a backend + DevOps developer—I make the behind-the-scenes run smoother (and maybe a little cuter)
-            </p>
-          </div>
-        </div>
-        {/* 🎹 Spline */}
-        <div className="w-full md:w-1/2 overflow-hidden h-[45vh] md:h-[75vh] z-0 scale-[1.05] md:scale-[1] transition-transform duration-300">
-          <Suspense fallback={null}>
-            <LazySpline
-              scene="https://prod.spline.design/C62V1tbFur6alYMM/scene.splinecode"
-              onLoad={(app) => {
-                splineRef.current = app;
-                setTimeout(() => setSplineReady(true), 300);
-              }}
-              onSplineMouseDown={(e) => {
-                console.log("Clicked name:", e.target?.name);
-                const target = e.target as { name?: string };
-                console.log("Clicked object:", target.name);
+      {/* Phase 3 & 4: Exploring / Viewing */}
+      {(phase === "exploring" || phase === "viewing") && (
+        <>
+          {/* Game HUD sidebar */}
+          <GameHUD
+            activeSection={activeSection}
+            onSelect={openSection}
+            muted={muted}
+            onToggleMute={toggleMute}
+            onPlaySfx={play}
+          />
 
-                if (!target.name) return;
+          {/* Main area */}
+          <main
+            className="ml-0 md:ml-[220px] h-full pb-[70px] md:pb-0 relative"
+            role="main"
+          >
+            {/* Ground scene */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              {/* Subtle ground */}
+              <div className="absolute bottom-[30%] w-full h-[2px] bg-gray-800/50" />
 
-                if (nameToPanel[target.name]) {
-                  handlePanelToggle(nameToPanel[target.name]);
-                  setTimeout(() => {
-                    splineRef.current?.emitEvent("mouseUp", target.name!);
-                  }, 100);
-                }
-              }}
-              onSplineMouseUp={(e) => {
-                const target = e.target as { name?: string };
-                if (!target.name) return;
+              {/* Fallen character on the ground */}
+              <div
+                className="absolute"
+                style={{
+                  bottom: "31%",
+                  left: "45%",
+                  transform: "rotate(90deg)",
+                  transformOrigin: "center center",
+                }}
+              >
+                <PixelCharacter state="fallen" />
+              </div>
 
-                // External links triggered on mouseUp
-                if (target.name === "github") {
-                  window.open("https://github.com/bellas-bytes", "_blank");
-                }
+              {/* Intro text — fades in after items land */}
+              <motion.div
+                className="absolute top-[12%] left-0 right-0 text-center px-4"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8, duration: 0.5 }}
+              >
+                <h1 className="font-pixel text-[14px] md:text-[18px] text-white leading-loose">
+                  Hi, I'm Isabella!
+                </h1>
+                <p className="font-pixel text-[8px] md:text-[9px] text-gray-500 mt-2 max-w-md mx-auto leading-relaxed">
+                  Backend + DevOps developer — I make the behind-the-scenes run
+                  smoother
+                </p>
+              </motion.div>
+            </div>
 
-                if (target.name === "linkedin") {
-                  window.open(
-                    "https://linkedin.com/in/nguyenisabella",
-                    "_blank",
-                  );
-                }
-
-                if (target.name === "terminal") {
-                  setShowTerminal((prev) => !prev);
-                  triggerKeyAnimation("terminal");
-                }
-                if (target.name === "heart") {
-                  triggerKeyAnimation("heart");
-
-                  // 💕 Cute heart burst from the center
-                  for (let i = 0; i < 8; i++) {
-                    const id = heartIdRef.current++;
-                    const newHeart = {
-                      x: window.innerWidth / 2 + (Math.random() * 100 - 50),
-                      y: window.innerHeight / 2 + (Math.random() * 100 - 50),
-                      id,
-                    };
-                    setMouseHearts((prev) => [...prev, newHeart]);
-                    setTimeout(() => {
-                      setMouseHearts((prev) => prev.filter((h) => h.id !== id));
-                    }, 1000);
-                  }
-                }
-              }}
+            {/* Items burst from character to final positions */}
+            <DroppedItems
+              onSelect={openSection}
+              activeSection={activeSection}
+              onPlaySfx={play}
             />
-          </Suspense>
-        </div>
+          </main>
 
-        {isLoading && <TypingLoader />}
-        {showTerminal && (
-          <div className="fixed bottom-0 left-0 right-0 z-[10001] px-4 pb-6">
-            <TerminalPanel onClose={() => setShowTerminal(false)} />
-          </div>
-        )}
-      </div>
-      {mouseHearts.map((heart) => (
-        <span
-          key={heart.id}
-          className="fixed animate-heart-float text-pink-400 select-none pointer-events-none"
-          style={{
-            left: `${heart.x}px`,
-            top: `${heart.y}px`,
-            transform: "translate(-50%, -50%)",
-            fontSize: "1.5rem",
-          }}
-        >
-          💕
-        </span>
-      ))}
+          {/* Section panel overlay */}
+          <SectionPanel section={activeSection} onClose={closeSection} />
+        </>
+      )}
     </div>
   );
 }

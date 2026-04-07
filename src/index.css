@@ -1,3 +1,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  * {
+    image-rendering: auto;
+  }
+
+  body {
+    @apply bg-[#0a0a1a] text-white antialiased;
+    font-family: "Inter", system-ui, sans-serif;
+  }
+
+  /* Pixel font utility */
+  .font-pixel {
+    font-family: "Press Start 2P", monospace;
+  }
+
+  /* Custom scrollbar for game feel */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0d1117;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #1a3a5c;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #4a9eff;
+  }
+}
