@@ -1,3 +1,8 @@
+export const about = {
+  bio: "I'm a Computer Science student at the University of Toronto with a focus in Artificial Intelligence. I love building things that work behind the scenes — from automating infrastructure to designing clean, scalable backends. When I'm not coding, you can find me exploring creative side projects and overengineering my portfolio.",
+  interests: ["DevOps & Infrastructure", "AI & Machine Learning", "Creative Web Experiences"],
+};
+
 export const projects = [
   {
     name: "KnowItAll",
