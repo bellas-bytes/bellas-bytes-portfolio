@@ -86,7 +86,7 @@ export default function Nav() {
             aria-label="Open to new grad roles"
           >
             <AvailabilityDot />
-            <span className="text-[8px] tracking-[0.3em] uppercase text-white/45">
+            <span className="text-[8px] tracking-[0.3em] uppercase text-white/45 font-semibold">
               Open to New Grad Roles
             </span>
           </span>
@@ -96,10 +96,10 @@ export default function Nav() {
           onClick={() => scrollToId("contact")}
           aria-label="Contact"
           aria-current={activeId === "contact" ? "true" : undefined}
-          className={`text-[10px] tracking-[0.35em] uppercase transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded-sm hover:text-white ${
+          className={`text-[10px] tracking-[0.35em] uppercase transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 hover:text-white rounded-full border px-3 py-1.5 ${
             activeId === "contact"
-              ? "text-white font-semibold"
-              : "text-white/65"
+              ? "text-white font-semibold border-white/30 bg-white/15 backdrop-blur-md backdrop-saturate-125 shadow-[0_4px_18px_-6px_rgba(255,255,255,0.15)]"
+              : "text-white/65 border-transparent bg-transparent"
           }`}
         >
           Contact
@@ -131,12 +131,12 @@ export default function Nav() {
               aria-label="Open to new grad roles"
             >
               <AvailabilityDot />
-              <span className="hidden xl:inline text-[8px] tracking-[0.3em] uppercase text-white/45">
+              <span className="hidden xl:inline text-[8px] tracking-[0.3em] uppercase text-white/45 font-semibold">
                 Open to New Grad Roles
               </span>
               <span
                 aria-hidden="true"
-                className="xl:hidden pointer-events-none absolute left-full ml-3 whitespace-nowrap text-[8px] tracking-[0.3em] uppercase text-white/70 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                className="xl:hidden pointer-events-none absolute left-full top-1/2 -translate-y-1/2 ml-3 whitespace-nowrap text-[8px] tracking-[0.3em] uppercase text-white font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-full border border-white/15 bg-black/40 backdrop-blur-md backdrop-saturate-125 px-3 py-1.5 shadow-[0_6px_20px_-8px_rgba(0,0,0,0.6)]"
               >
                 Open to New Grad Roles
               </span>
@@ -162,20 +162,20 @@ export default function Nav() {
                       }`}
                     />
                     <span
-                      className={`hidden xl:inline text-[10px] tracking-[0.35em] uppercase transition-colors group-hover:text-white ${
+                      className={`hidden xl:inline text-[10px] tracking-[0.35em] uppercase rounded-full border px-3 py-1 transition-all group-hover:text-white ${
                         isActive
-                          ? "text-white font-semibold"
-                          : "text-white/55"
+                          ? "text-white font-semibold border-white/25 bg-white/15 backdrop-blur-md backdrop-saturate-125 shadow-[0_4px_18px_-6px_rgba(255,255,255,0.15)]"
+                          : "text-white/55 border-transparent bg-transparent"
                       }`}
                     >
                       {link.label}
                     </span>
                     <span
                       aria-hidden="true"
-                      className={`xl:hidden pointer-events-none absolute left-full ml-3 whitespace-nowrap text-[10px] tracking-[0.35em] uppercase transition-opacity duration-200 ${
+                      className={`xl:hidden pointer-events-none absolute left-full top-1/2 -translate-y-1/2 ml-3 whitespace-nowrap text-[10px] tracking-[0.35em] uppercase text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-full border backdrop-blur-md backdrop-saturate-125 px-3 py-1.5 ${
                         isActive
-                          ? "text-white font-semibold opacity-100"
-                          : "text-white opacity-0 group-hover:opacity-100"
+                          ? "font-semibold border-white/30 bg-white/15 shadow-[0_6px_20px_-8px_rgba(255,255,255,0.2)]"
+                          : "border-white/15 bg-black/40 shadow-[0_6px_20px_-8px_rgba(0,0,0,0.6)]"
                       }`}
                     >
                       {link.label}
