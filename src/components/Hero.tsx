@@ -126,7 +126,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2, delay: 1.4 }}
-        className="absolute bottom-0 left-0 right-0 z-20 flex items-center justify-between px-8 md:px-14 pb-8 text-white/55"
+        className="absolute bottom-0 left-0 right-0 z-20 flex items-center justify-end px-8 md:px-14 pb-8 text-white/55"
       >
         <span className="text-[10px] tracking-[0.4em] uppercase">
           Est. Toronto
