@@ -9,7 +9,7 @@ export default function About() {
       {/* Long fade from hero's pure black into the grainient — keeps the scroll seamless */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 h-[30vh] bg-gradient-to-b from-black via-black/70 to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-0 h-[45vh] bg-gradient-to-b from-black via-black/70 to-transparent"
       />
       {/* Slight darkening so text stays readable over the grainient */}
       <div

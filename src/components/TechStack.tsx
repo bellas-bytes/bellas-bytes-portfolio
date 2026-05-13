@@ -6,11 +6,17 @@ export default function TechStack() {
   return (
     <section
       id="stack"
-      className="relative w-full pt-16 md:pt-24 pb-28 md:pb-36"
+      className="relative w-full pt-16 md:pt-24 pb-40 md:pb-56"
     >
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-black/25"
+      />
+
+      {/* Bottom fade — dissolves the grainient into black so the Contact section starts seamlessly */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-48 md:h-72 bg-gradient-to-b from-transparent via-black/70 to-black"
       />
 
       <div className="relative z-10 mx-auto max-w-5xl px-6 md:px-14">
