@@ -1,17 +1,21 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: "class",
   content: ["./src/**/*.{js,ts,jsx,tsx}", "./public/index.html"],
   theme: {
     extend: {
-      keyframes: {
-        "heart-float": {
-          "0%": { opacity: 1, transform: "translateY(0) scale(1)" },
-          "100%": { opacity: 0, transform: "translateY(-60px) scale(1.5)" },
-        },
+      fontFamily: {
+        display: ["Chatime", "cursive"],
+        body: ['"DM Sans"', "system-ui", "sans-serif"],
       },
-      animation: {
-        "heart-float": "heart-float 1s ease-out forwards",
+      colors: {
+        cyan: {
+          deep: "#1e3a5a",
+          mid: "#3a6a94",
+          light: "#6a9cc4",
+          wash: "#8bb4d4",
+          paper: "#f0ebe1",
+          cream: "#faf6ee",
+        },
       },
     },
   },

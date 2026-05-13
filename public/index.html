@@ -4,39 +4,44 @@
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#fdf2f8" />
+    <meta name="theme-color" content="#1e3a5a" />
     <meta
       name="description"
-      content="✨ Isabella's digital playground — exploring tech and building cool stuff"
+      content="Isabella Nguyen — Developer Portfolio"
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/icon.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
-    <!-- Custom font (optional) -->
+    <!-- Body font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
       rel="stylesheet"
     />
 
-    <title>Bella's Bytes</title>
+    <title>Isabella Nguyen</title>
     <style>
-      body {
-        font-family: "Quicksand", sans-serif;
-        background-color: #fdf2f8;
-        color: #1f2937;
+      /* Display font — drop Chatime-Regular font file into public/fonts/ */
+      @font-face {
+        font-family: "Chatime";
+        src: url("%PUBLIC_URL%/fonts/chatime.otf") format("opentype");
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
       }
-      .loading-message {
-        text-align: center;
-        margin-top: 20%;
-        font-size: 1.25rem;
+
+      body {
+        margin: 0;
+        background-color: #1e3a5a;
+        color: #f0ebe1;
       }
     </style>
   </head>
   <body>
     <noscript>
-      <div class="loading-message">
-        💔 Oops! This site needs JavaScript to sparkle ✨ Please enable it to
-        explore!
+      <div style="text-align: center; margin-top: 20%; font-family: sans-serif; color: #f0ebe1;">
+        Please enable JavaScript to view this site.
       </div>
     </noscript>
     <div id="root"></div>
