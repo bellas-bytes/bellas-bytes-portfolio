@@ -3,6 +3,9 @@ import { motion } from "framer-motion";
 const GIF_SRC =
   "https://i.pinimg.com/originals/37/55/ce/3755ceb460354b7eb87f16cdb1ea0b59.gif";
 
+const RESUME_URL =
+  "https://drive.google.com/file/d/14_VFkO8inlRwbAh67Jt1dBOPa8iHMsgG/view?usp=sharing";
+
 function scrollToAbout() {
   document
     .getElementById("about")
@@ -56,6 +59,34 @@ export default function Hero() {
         >
           Building the Behind the Scenes
         </motion.p>
+
+        <motion.a
+          href={RESUME_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut", delay: 1.1 }}
+          className="group mt-10 inline-flex items-center gap-3 rounded-full border border-white/25 bg-white/[0.03] px-6 py-3 text-[10px] tracking-[0.4em] uppercase text-white/80 backdrop-blur-sm transition hover:border-white/50 hover:bg-white/[0.08] hover:text-white"
+        >
+          View Resume
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="transition-transform group-hover:translate-x-0.5"
+            aria-hidden="true"
+          >
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </motion.a>
       </div>
 
       {/* Motion scroll cue — sits in the fade zone */}

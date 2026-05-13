@@ -206,10 +206,6 @@ function ExperienceDialog({ experience, onClose }: DialogProps) {
             {experience.location ? ` · ${experience.location}` : ""}
           </p>
 
-          <p className="mt-6 text-sm md:text-base text-white/80 font-light leading-relaxed">
-            {experience.details}
-          </p>
-
           {experience.highlights && experience.highlights.length > 0 && (
             <div className="mt-8">
               <p className="text-[10px] tracking-[0.4em] uppercase text-white/45 mb-3">
