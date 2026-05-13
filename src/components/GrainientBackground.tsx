@@ -12,9 +12,9 @@ export default function GrainientBackground() {
       }}
     >
       <Grainient
-        color1="#d4d7c4"
-        color2="#97aab3"
-        color3="#3a4750"
+        color1="#a2b1b9"
+        color2="#718da1"
+        color3="#4b6070"
         timeSpeed={0.15}
         colorBalance={0.0}
         warpStrength={0.7}

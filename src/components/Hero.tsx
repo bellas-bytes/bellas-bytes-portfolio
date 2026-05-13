@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { FaLinkedinIn, FaGithub } from "react-icons/fa";
 
 const GIF_SRC =
   "https://i.pinimg.com/originals/37/55/ce/3755ceb460354b7eb87f16cdb1ea0b59.gif";
@@ -20,25 +19,13 @@ export default function Hero() {
         className="absolute inset-0 w-full h-full object-cover scale-125 z-0"
       />
 
-      {/* Cinematic darkening layers (reduced) */}
+      {/* Cinematic darkening layers */}
       <div className="absolute inset-0 z-10 bg-black/30" />
       <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/45 via-transparent to-transparent" />
       <div className="absolute inset-0 z-10 bg-[radial-gradient(ellipse_at_center,_rgba(0,0,0,0)_45%,_rgba(0,0,0,0.5)_100%)]" />
 
       {/* Bottom fade: dissolves GIF into pure black so the section seams disappear */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[45%] bg-gradient-to-b from-transparent via-black/70 to-black" />
-
-      {/* Top bar */}
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-        className="absolute top-0 left-0 right-0 z-20 flex items-center justify-end px-8 md:px-14 py-6 text-white/70"
-      >
-        <span className="hidden md:inline text-xs tracking-[0.35em] uppercase">
-          2026
-        </span>
-      </motion.div>
 
       {/* Center content */}
       <div className="relative z-20 flex h-full flex-col items-center justify-center text-center px-6">
@@ -69,7 +56,6 @@ export default function Hero() {
         >
           Building the Behind the Scenes
         </motion.p>
-
       </div>
 
       {/* Motion scroll cue — sits in the fade zone */}
@@ -92,7 +78,7 @@ export default function Hero() {
         </div>
       </motion.button>
 
-      {/* Bottom bar */}
+      {/* Bottom signature */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -102,26 +88,6 @@ export default function Hero() {
         <span className="text-[10px] tracking-[0.4em] uppercase">
           Est. Toronto
         </span>
-        <div className="flex items-center gap-5">
-          <a
-            href="https://www.linkedin.com/in/isabella-nguyen/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            className="text-white/70 hover:text-white transition-colors duration-300 hover:-translate-y-0.5 transform-gpu"
-          >
-            <FaLinkedinIn className="h-4 w-4 md:h-5 md:w-5" />
-          </a>
-          <a
-            href="https://github.com/bellas-bytes"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            className="text-white/70 hover:text-white transition-colors duration-300 hover:-translate-y-0.5 transform-gpu"
-          >
-            <FaGithub className="h-4 w-4 md:h-5 md:w-5" />
-          </a>
-        </div>
       </motion.div>
     </section>
   );
