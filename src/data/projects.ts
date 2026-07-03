@@ -29,6 +29,20 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    id: "proj-5",
+    title: "Kinora & Company",
+    year: "2026",
+    tagline: "A cinematic landing page for a Toronto-based private gathering company.",
+    description:
+      "Translated business requirements into an immersive single-page experience for Kinora & Company. Built an interactive reveal where clicking a candle transitions the scene from unlit to lit, triggering layered audio — match strike, vinyl static, and ambient music — with smooth fade logic. Features animated SVG backgrounds, a scrolling ticker, and a minimal contact interface, deployed on Vercel.",
+    tech: ["React", "Vite", "JavaScript", "CSS"],
+    links: [
+      { label: "GitHub", url: "https://github.com/JBS2323/kinora-company" },
+      { label: "Live Site", url: "https://kinora-company.vercel.app" },
+    ],
+    featured: true,
+  },
+  {
     id: "proj-2",
     title: "KnowItAll",
     year: "2025",
