@@ -6,7 +6,7 @@ const GIF_SRC =
   "https://i.pinimg.com/originals/4e/40/1d/4e401db1402b22c39edf1f003d928a0e.gif";
 
 const RESUME_URL =
-  "https://drive.google.com/file/d/1wk-JEgFoY7eCf8HANBrzT8ei9SE1Dlcz/view?usp=sharing";
+  "https://drive.google.com/file/d/1_s1jqAfBXZsYU-LRWIn7MUyPYYsjml1A/view?usp=sharing";
 
 const LINKEDIN_URL = "https://www.linkedin.com/in/nguyenisabella/";
 const GITHUB_URL = "https://github.com/bellas-bytes";

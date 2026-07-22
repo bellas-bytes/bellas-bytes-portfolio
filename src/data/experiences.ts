@@ -22,13 +22,13 @@ export const experiences: Experience[] = [
       "Extended safe-settings with an org-level plugin layer to manage GitHub organization resources as infrastructure-as-code, replacing manual UI-based administration with PR-reviewed, auditable policy enforcement.",
       "Eliminated silent misconfiguration risk on the org-level IP allow list by codifying CIDR entries with mandatory review gates, audit trails, and automated enforcement.",
       "Built an org-wide GitHub App inventory system to surface installed apps, their permissions, and permission changes, providing visibility that previously did not exist.",
-      "Consolidated CI authentication infrastructure by migrating a legacy secrets-management integration to an internal token generation system, reducing operational complexity.",
-      "Improved CI security posture by enabling dynamic permission scoping based on build context — ensuring untrusted builds no longer receive elevated credentials.",
+      "Reduced Maven/Java CI build times by 70% by configuring EC2 agents to launch from pre-cached EBS snapshots, eliminating redundant dependency resolution on each run"
     ],
     tech: ["Github",
           "Python",
           "Claude Code",
-          "Semaphore"
+          "Semaphore",
+          "AWS"
         ],
   },
   {
