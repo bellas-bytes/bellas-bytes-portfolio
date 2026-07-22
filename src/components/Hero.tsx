@@ -4,7 +4,7 @@ const GIF_SRC =
   "https://i.pinimg.com/originals/37/55/ce/3755ceb460354b7eb87f16cdb1ea0b59.gif";
 
 const RESUME_URL =
-  "https://drive.google.com/file/d/1wk-JEgFoY7eCf8HANBrzT8ei9SE1Dlcz/view?usp=sharing";
+  "https://drive.google.com/file/d/1_s1jqAfBXZsYU-LRWIn7MUyPYYsjml1A/view?usp=sharing";
 
 function scrollToAbout() {
   document
