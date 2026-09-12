@@ -19,10 +19,9 @@ export const experiences: Experience[] = [
     summary:
       "Dev Productivity Team",
     highlights: [
-      "Extended safe-settings with an org-level plugin layer to manage GitHub organization resources as infrastructure-as-code, replacing manual UI-based administration with PR-reviewed, auditable policy enforcement.",
-      "Eliminated silent misconfiguration risk on the org-level IP allow list by codifying CIDR entries with mandatory review gates, audit trails, and automated enforcement.",
-      "Built an org-wide GitHub App inventory system to surface installed apps, their permissions, and permission changes, providing visibility that previously did not exist.",
-      "Reduced Maven/Java CI build times by 70% by configuring EC2 agents to launch from pre-cached EBS snapshots, eliminating redundant dependency resolution on each run"
+      "Extended safe-settings framework with a new org-level plugin layer to manage GitHub organization resources (IP allow lists, GitHub App visibility, team structure) as infrastructure-as-code.",
+      "Replaced manually-managed org IP allow list with a version-controlled, PR-reviewed workflow, adding audit trails and automated enforcement to prevent overly broad CIDR ranges and stale entries.",
+      "Prototyped EC2 build agents using EBS snapshots with pre-cached dependencies to evaluate caching strategies to improve Maven/Java CI build times.",
     ],
     tech: ["Github",
           "Python",
@@ -40,11 +39,9 @@ export const experiences: Experience[] = [
     summary:
       "DevOps - Platform Engineering",
     highlights: [
-      "Built a production observability pipeline processing 50K+ audit events/day.",
-      "Integrated OpenTelemetry with Grafana, Mimir, and Loki for scalable observability.",
-      "Built MCP-based internal tools with specialized agents to automate operational manual updates.",
-      "Evaluated Windsurf and Claude Code, improving code completion efficiency by 20%.",
-      "Built reusable GitHub Actions workflows to standardize CI/CD across teams.",
+      "Built a production observability pipeline ingesting 50K+ audit events/day from the Anthropic API, orchestrated via Airflow (S3→Splunk) to enable monitoring, alerting, and compliance.",
+      "Integrated OpenTelemetry with Grafana, Mimir, and Loki to track Claude Code usage, inform cost optimization, and retain telemetry for audits.",
+      "Built an MCP server and multi-agent workflow to generate operational documentation in Confluence for platform tools, coordinating agents that retrieved PagerDuty data, identified service owners from an internal platform, and drafted updates.",
     ],
     tech: [
       "Python",
@@ -70,11 +67,10 @@ export const experiences: Experience[] = [
     summary:
       "DevOps - Platform Engineering",
     highlights: [
-      "Architected Terraform infrastructure for JFrog Artifactory supporting 72M+ artifacts.",
-      "Reduced support turnaround time by 20% through automated configuration and access controls.",
-      "Migrated 700+ Jira projects with an automated pipeline and zero downtime.",
-      "Reduced developer onboarding setup time from 1 day to 1 hour.",
-      "Co-delivered an internal tech conference presentation on developer productivity with Windsurf.",
+      "Expanded Terraform-managed RBAC for JFrog Artifactory housing 72M+ artifacts, configuring permissions for users and services to manage access and enforce retention policies.",
+      "Migrated 700+ Jira projects with an automated pipeline, ensuring data integrity and zero downtime.",
+      "Leveraged internal Developer Portal to streamline the onboarding pipeline from 1 day to 1 hour for Artifactory.",
+      "Delivered a workshop on emerging AI tooling and intelligent development environments to over 50 participants, advancing adoption of innovative technologies across teams.",
     ],
     tech: [
       "Terraform",
