@@ -34,6 +34,8 @@ a {
   color: inherit;
 }
 .receipt-scene {
+  position: relative;
+  isolation: isolate;
   min-height: 100vh;
   padding: 106px 24px 205px;
   background:
@@ -1097,4 +1099,10 @@ a {
   .email-link {
     font-size: 21px;
   }
+}
+
+.receipt-ambience {
+  background:
+    radial-gradient(ellipse at 20% 25%, #d4dde1, transparent 65%),
+    linear-gradient(125deg, #a9b9c6, #829dad);
 }

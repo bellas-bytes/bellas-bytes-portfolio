@@ -136,12 +136,22 @@ const Grainient = ({
     const container = containerRef.current;
     if (!container) return;
 
-    const renderer = new Renderer({
-      webgl: 2,
-      alpha: true,
-      antialias: false,
-      dpr: Math.min(window.devicePixelRatio || 1, 2),
-    });
+    let renderer;
+    try {
+      renderer = new Renderer({
+        webgl: 2,
+        alpha: true,
+        antialias: false,
+        dpr: Math.min(window.devicePixelRatio || 1, 1.5),
+      });
+    } catch {
+      return; // Keep the CSS gradient when WebGL is unavailable.
+    }
+
+    if (!renderer.isWebgl2) {
+      renderer.gl?.getExtension("WEBGL_lose_context")?.loseContext();
+      return;
+    }
 
     const gl = renderer.gl;
     const canvas = gl.canvas;
@@ -226,7 +236,7 @@ const Grainient = ({
         isVisible = entry.isIntersecting;
         isVisible ? tryStart() : tryStop();
       },
-      { threshold: 0 }
+      { threshold: 0 },
     );
     io.observe(container);
 
@@ -244,6 +254,7 @@ const Grainient = ({
       io.disconnect();
       document.removeEventListener("visibilitychange", onVisibility);
       ctxMap.delete(container);
+      gl.getExtension("WEBGL_lose_context")?.loseContext();
       try {
         container.removeChild(canvas);
       } catch {

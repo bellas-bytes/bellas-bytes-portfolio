@@ -1,3 +1,4 @@
+import GrainientBackground from "./GrainientBackground";
 import ReceiptDoodle from "./ReceiptDoodle";
 import { useEffect, useState } from "react";
 import { experiences } from "../data/experiences";
@@ -158,6 +159,7 @@ export default function ReceiptPortfolio() {
   }, []);
   return (
     <div className="receipt-scene thermal-colors">
+      <GrainientBackground />
       <svg
         className="thermal-filter-definitions"
         aria-hidden="true"
