@@ -1058,8 +1058,7 @@ a {
 .receipt-section .handwritten,
 .scroll-invitation,
 .thank-you-stamp,
-.email-link,
-.receipt-nav a[aria-current="location"] {
+.email-link {
   font-family: "Caveat", "Segoe Print", cursive;
   font-style: normal;
   letter-spacing: 0;
@@ -1087,13 +1086,6 @@ a {
 .email-link {
   font-size: 23px;
   font-weight: 600;
-}
-.receipt-nav a[aria-current="location"] {
-  font-size: 20px;
-  font-weight: 600;
-}
-.receipt-nav a[aria-current="location"] > span {
-  font-family: "Courier New", monospace;
 }
 @media (max-width: 640px) {
   .receipt-section .handwritten {
