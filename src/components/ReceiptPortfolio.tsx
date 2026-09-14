@@ -418,7 +418,12 @@ export default function ReceiptPortfolio() {
                     <span className="item-number">0{i + 1}</span>
                     {project.title}
                   </h3>
-                  <span>{project.year}</span>
+                  <span className="project-meta">
+                    {project.status && (
+                      <span className="project-status">{project.status}</span>
+                    )}
+                    <span>{project.year}</span>
+                  </span>
                 </div>
                 <p>
                   {project.id === "proj-4"

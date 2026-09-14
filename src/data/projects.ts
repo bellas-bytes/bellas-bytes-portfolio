@@ -7,6 +7,7 @@ export type Project = {
   id: string;
   title: string;
   year?: string;
+  status?: "In progress";
   tagline: string;
   description: string;
   tech: string[];
@@ -20,6 +21,18 @@ export type Project = {
   };
 };
 export const projects: Project[] = [
+  {
+    id: "proj-picpal",
+    title: "PicPal",
+    year: "2026",
+    status: "In progress",
+    tagline:
+      "An AI photo framing coach that helps you capture your ideal shot.",
+    description:
+      "Building an iOS photo coach that uses reference photos to guide live shots. Combines on-device computer vision at 30 fps with optional cloud VLM analysis to help users frame and capture their ideal photo.",
+    tech: ["Swift", "iOS", "Vision", "MediaPipe"],
+    links: [],
+  },
   {
     id: "proj-1",
     preview: {

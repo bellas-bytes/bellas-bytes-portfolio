@@ -1042,3 +1042,23 @@ a {
     height: 88px;
   }
 }
+
+.project-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.project-status {
+  border: 1px dashed currentColor;
+  padding: 4px 7px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+@media (max-width: 640px) {
+  .project-meta {
+    justify-content: flex-start;
+  }
+}
