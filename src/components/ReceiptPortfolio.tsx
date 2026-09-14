@@ -1,3 +1,4 @@
+import PaperToss from "./PaperToss";
 import ReceiptDoodle from "./ReceiptDoodle";
 import { useEffect, useState } from "react";
 import { experiences } from "../data/experiences";
@@ -515,6 +516,7 @@ export default function ReceiptPortfolio() {
               <br />
               <span>Come back soon. There’s always more in the works.</span>
             </p>
+            <PaperToss />
           </section>
         </div>
       </main>

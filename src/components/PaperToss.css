@@ -1,0 +1,173 @@
+.crumple-trigger {
+  display: block;
+  margin: 30px auto 0;
+  padding: 12px;
+  border: 0;
+  background: none;
+  color: var(--red, #9d4238);
+  font:
+    24px "Caveat",
+    cursive;
+  cursor: pointer;
+}
+.paper-toss {
+  box-sizing: border-box;
+  width: min(460px, calc(100% - 24px));
+  max-height: calc(100dvh - 24px);
+  padding: 26px;
+  overflow-y: auto;
+  border: 1px solid #6c7064;
+  border-radius: 8px;
+  background: #f6f2e7;
+  color: #242720;
+  text-align: center;
+  font:
+    14px/1.5 "Courier New",
+    monospace;
+  box-shadow: 0 24px 90px #0005;
+}
+.paper-toss::backdrop {
+  background: #263342b8;
+  backdrop-filter: blur(5px);
+}
+.toss-close {
+  position: absolute;
+  right: 8px;
+  top: 4px;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: inherit;
+}
+.toss-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  margin: 8px 0;
+}
+.paper-toss h2 {
+  font:
+    40px/1.1 "Caveat",
+    cursive;
+  margin: 12px 0;
+}
+.toss-score {
+  margin-top: 18px;
+  border-block: 1px dashed #85877c;
+  padding: 8px;
+  font-weight: bold;
+}
+.toss-court {
+  display: block;
+  width: min(100%, 34.2dvh);
+  height: auto;
+  margin-inline: auto;
+  touch-action: none;
+  user-select: none;
+  cursor: grab;
+}
+.toss-status {
+  min-height: 42px;
+  margin: 8px 0;
+}
+.toss-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  text-align: left;
+}
+.toss-controls label span {
+  float: right;
+}
+.toss-controls input {
+  display: block;
+  width: 100%;
+  margin: 8px 0;
+  accent-color: #9d4238;
+}
+.toss-controls button {
+  grid-column: 1 / -1;
+  padding: 12px;
+  background: #30372f;
+  color: #fffcf2;
+  border: 0;
+  border-radius: 3px;
+  font: inherit;
+  cursor: pointer;
+}
+.toss-controls button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+.toss-return {
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-decoration: underline;
+  padding: 12px;
+  margin-top: 6px;
+  cursor: pointer;
+}
+.paper-toss button:focus-visible,
+.paper-toss input:focus-visible,
+.crumple-trigger:focus-visible {
+  outline: 2px solid #9d4238;
+  outline-offset: 3px;
+}
+.toss-mini-receipt {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: receipt-crumple 0.7s ease-in forwards;
+  pointer-events: none;
+}
+.toss-paper-ball {
+  animation: ball-appear 0.7s ease-in;
+}
+@keyframes receipt-crumple {
+  0% {
+    opacity: 1;
+    scale: 1;
+    rotate: -5deg;
+  }
+  65% {
+    opacity: 1;
+    scale: 0.35 0.6;
+    rotate: 22deg;
+  }
+  100% {
+    opacity: 0;
+    scale: 0.1;
+    rotate: 75deg;
+  }
+}
+@keyframes ball-appear {
+  0%,
+  70% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .toss-mini-receipt {
+    display: none;
+  }
+  .toss-paper-ball {
+    animation: none;
+  }
+}
+
+.toss-target-description {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
