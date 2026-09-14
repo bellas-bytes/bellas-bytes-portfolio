@@ -128,7 +128,6 @@ function Printer() {
 }
 
 export default function ReceiptPortfolio() {
-  const [originalColors, setOriginalColors] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   useEffect(() => {
     let frame = 0;
@@ -158,9 +157,7 @@ export default function ReceiptPortfolio() {
     };
   }, []);
   return (
-    <div
-      className={`receipt-scene ${originalColors ? "original-colors" : "thermal-colors"}`}
-    >
+    <div className="receipt-scene thermal-colors">
       <svg
         className="thermal-filter-definitions"
         aria-hidden="true"
@@ -376,14 +373,6 @@ export default function ReceiptPortfolio() {
               <p className="section-intro">
                 From a small “what if” to something real.
               </p>
-              <button
-                type="button"
-                className="color-toggle"
-                aria-pressed={originalColors}
-                onClick={() => setOriginalColors(!originalColors)}
-              >
-                {originalColors ? "Use receipt ink" : "Show original colors"}
-              </button>
             </div>
             {projects.map((project, i) => (
               <article
