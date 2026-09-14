@@ -4,26 +4,12 @@
 
 @layer base {
   body {
-    @apply bg-black text-white antialiased;
-    font-family: "DM Sans", system-ui, sans-serif;
+    margin: 0;
+    background: #a9b9c6;
+    color: #33332e;
+    -webkit-font-smoothing: antialiased;
   }
-
-  /* Subtle scrollbar matching the cyanotype palette */
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: #1e3a5a;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: #3a6a94;
-    border-radius: 3px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: #6a9cc4;
+  * {
+    box-sizing: border-box;
   }
 }
-
