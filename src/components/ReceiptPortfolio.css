@@ -1,9 +1,9 @@
 :root {
-  --paper: #f1eedf;
+  --paper: #f6f3e8;
   --ink: #242720;
   --muted-ink: #4e5147;
   --red: #a33c2d;
-  --desk: #a4adb0;
+  --desk: #a9b9c6;
   --receipt-width: 760px;
 }
 html {
@@ -134,23 +134,7 @@ a {
   position: relative;
   width: min(100%, var(--receipt-width));
   margin: 0 auto;
-  background:
-    linear-gradient(
-      90deg,
-      #82735322,
-      transparent 3%,
-      transparent 97%,
-      #82735326
-    ),
-    repeating-linear-gradient(
-      178deg,
-      transparent 0 650px,
-      #72674712 651px,
-      #fff9 653px,
-      transparent 657px,
-      transparent 980px
-    ),
-    var(--paper);
+  background: var(--paper);
   box-shadow:
     0 3px 5px #30415120,
     12px 10px 36px #30415122,
@@ -165,44 +149,9 @@ a {
   right: 0;
   height: 9px;
   background: var(--paper);
-  clip-path: polygon(
-    0 45%,
-    2% 65%,
-    4% 23%,
-    7% 50%,
-    10% 15%,
-    12% 48%,
-    15% 34%,
-    18% 61%,
-    21% 25%,
-    24% 50%,
-    27% 16%,
-    30% 44%,
-    34% 30%,
-    37% 57%,
-    40% 21%,
-    44% 48%,
-    47% 10%,
-    50% 40%,
-    53% 25%,
-    56% 62%,
-    60% 20%,
-    63% 42%,
-    66% 12%,
-    69% 46%,
-    72% 26%,
-    75% 58%,
-    78% 21%,
-    81% 48%,
-    84% 15%,
-    87% 43%,
-    90% 28%,
-    93% 58%,
-    96% 24%,
-    100% 45%,
-    100% 100%,
-    0 100%
-  );
+  mask:
+    linear-gradient(135deg, transparent 5px, #000 0) 0 0/10px 100%,
+    linear-gradient(225deg, transparent 5px, #000 0) 0 0/10px 100%;
 }
 .receipt-paper::before {
   top: -8px;
@@ -222,7 +171,7 @@ a {
   position: absolute;
   inset: 0;
   z-index: 2;
-  opacity: 0.16;
+  opacity: 0.055;
   background-image:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath d='M0 0h140v140H0z' filter='url(%23p)' opacity='.7'/%3E%3C/svg%3E"),
     linear-gradient(
@@ -736,89 +685,6 @@ a {
 .skip-link:focus {
   top: 10px;
 }
-
-/* Wear belongs on the paper and display ink, not the reading text. */
-.receipt-inner::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse at 0 19%, #7c6e3e22, transparent 16%),
-    radial-gradient(ellipse at 100% 64%, #7c6e3e1a, transparent 12%),
-    linear-gradient(
-      93deg,
-      transparent 46%,
-      #6c604912 49.6%,
-      #fff8 49.9%,
-      transparent 50.3%
-    );
-}
-.receipt-masthead h1::after,
-.thank-you-stamp::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse, var(--paper) 0 0.8px, transparent 1.2px) 1px 3px /
-      7px 9px,
-    radial-gradient(ellipse, var(--paper) 0 0.6px, transparent 1px) 4px 1px /
-      11px 7px,
-    repeating-linear-gradient(
-      177deg,
-      transparent 0 27px,
-      #f1eedf99 27px 27.7px,
-      transparent 28px 43px
-    );
-}
-.receipt-masthead h1 {
-  text-shadow:
-    0.5px 0.3px 0 #24272070,
-    -0.5px 0 0 #24272050;
-}
-.receipt-emblem {
-  width: 96px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 5px 0;
-  border-top: 3px double var(--ink);
-  border-bottom: 1px dashed var(--ink);
-  transform: rotate(4deg);
-}
-.receipt-order {
-  background: var(--ink);
-  color: var(--paper);
-  padding-left: 12px;
-  padding-right: 12px;
-  transform: rotate(-0.5deg);
-  box-shadow: 1px 2px 0 #24272025;
-}
-.receipt-heading {
-  border-top: 3px double var(--ink);
-  border-bottom-style: dashed;
-}
-.thank-you-stamp {
-  position: relative;
-}
-.receipt-barcode {
-  transform: rotate(0.7deg);
-  opacity: 0.92;
-}
-.printer-body::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.14;
-  background: repeating-linear-gradient(
-    173deg,
-    transparent 0 43px,
-    #717367 44px,
-    transparent 45px 97px
-  );
-}
-
 @media (hover: hover) {
   .receipt-nav a:hover,
   .project-links a:hover,
