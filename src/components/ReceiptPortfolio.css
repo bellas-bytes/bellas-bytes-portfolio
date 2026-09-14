@@ -1,10 +1,10 @@
 :root {
   --paper: #f6f3e8;
-  --ink: #34352f;
-  --muted-ink: #67675c;
+  --ink: #242720;
+  --muted-ink: #4e5147;
   --red: #a33c2d;
   --desk: #a9b9c6;
-  --receipt-width: 600px;
+  --receipt-width: 760px;
 }
 html {
   scroll-behavior: smooth;
@@ -13,6 +13,7 @@ html {
 }
 body {
   font-family: "Courier New", Courier, monospace;
+  color: var(--ink);
 }
 ::selection {
   background: #e2bfb0;
@@ -55,7 +56,7 @@ a {
   align-items: center;
   justify-content: space-between;
   color: #273c4a;
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.5;
   letter-spacing: 0.09em;
 }
@@ -82,14 +83,14 @@ a {
 }
 .receipt-nav {
   position: fixed;
-  left: max(30px, calc(50vw - 590px));
+  left: max(30px, calc(50vw - 650px));
   top: 235px;
   width: 190px;
   color: #344a59;
-  font-size: 11px;
+  font-size: 15px;
 }
 .receipt-nav p {
-  font-size: 9px;
+  font-size: 12px;
   letter-spacing: 0.14em;
   margin-bottom: 22px;
   opacity: 0.8;
@@ -102,17 +103,17 @@ a {
 }
 .receipt-nav a span {
   opacity: 0.6;
-  font-size: 10px;
+  font-size: 12px;
 }
 .nav-footnote {
   display: block;
   margin-top: 55px;
-  font-size: 8px;
+  font-size: 11px;
   letter-spacing: 0.12em;
 }
 .desk-note {
   position: fixed;
-  left: calc(50% + 370px);
+  left: calc(50% + 440px);
   top: 290px;
   color: #344a59;
   transform: rotate(7deg);
@@ -170,7 +171,7 @@ a {
   position: absolute;
   inset: 0;
   z-index: 2;
-  opacity: 0.11;
+  opacity: 0.055;
   background-image:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath d='M0 0h140v140H0z' filter='url(%23p)' opacity='.7'/%3E%3C/svg%3E"),
     linear-gradient(
@@ -187,7 +188,7 @@ a {
 .receipt-topline {
   display: flex;
   justify-content: space-between;
-  font-size: 8px;
+  font-size: 11px;
   letter-spacing: 0.08em;
 }
 .receipt-emblem {
@@ -217,13 +218,13 @@ a {
   top: 16px;
 }
 .receipt-name {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
   letter-spacing: 0.2em;
   margin: 0 0 8px;
 }
 .receipt-masthead > p:not(.receipt-name) {
-  font-size: 12px;
+  font-size: 16px;
   line-height: 1.65;
 }
 .receipt-order {
@@ -233,7 +234,7 @@ a {
   border-bottom: 1px dashed #79786b;
   display: flex;
   justify-content: space-between;
-  font-size: 10px;
+  font-size: 12px;
 }
 .receipt-welcome {
   margin: 20px 0 18px;
@@ -243,7 +244,7 @@ a {
   align-items: center;
   justify-content: center;
   gap: 14px;
-  font-size: 9px;
+  font-size: 12px;
   letter-spacing: 0.04em;
   text-decoration: none;
   color: var(--red);
@@ -265,13 +266,13 @@ a {
   border-bottom: 1px solid var(--ink);
   padding: 10px 0;
   margin: 0 0 27px;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 .receipt-heading > span:first-child {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: normal;
 }
 .receipt-heading > span:last-child {
@@ -280,7 +281,7 @@ a {
   line-height: 1;
 }
 .receipt-section p {
-  font-size: 12px;
+  font-size: 16px;
   line-height: 1.85;
   margin: 14px 0;
 }
@@ -302,7 +303,7 @@ a {
   padding: 14px 0;
   border-top: 1px dashed #949284;
   border-bottom: 1px dashed #949284;
-  font-size: 10px;
+  font-size: 12px;
 }
 .receipt-facts > div {
   display: flex;
@@ -327,7 +328,7 @@ a {
 .receipt-column-label {
   display: flex;
   justify-content: space-between;
-  font-size: 9px;
+  font-size: 12px;
   color: var(--muted-ink);
 }
 .receipt-job,
@@ -342,35 +343,35 @@ a {
   align-items: baseline;
 }
 .item-heading h3 {
-  font-size: 15px;
+  font-size: 18px;
   font-weight: bold;
   line-height: 1.3;
 }
 .item-number {
   display: inline-block;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: normal;
   margin-right: 12px;
 }
 .item-heading > span {
-  font-size: 9px;
+  font-size: 12px;
   text-align: right;
   flex-shrink: 0;
 }
 .receipt-section .job-role {
-  font-size: 12px;
+  font-size: 16px;
   font-weight: bold;
   margin: 12px 0 0;
 }
 .receipt-section .job-team {
-  font-size: 10px;
+  font-size: 12px;
   margin: 1px 0 15px;
   color: var(--muted-ink);
 }
 .receipt-bullets {
   padding: 0;
   list-style: none;
-  font-size: 11px;
+  font-size: 15px;
   line-height: 1.85;
 }
 .receipt-bullets li {
@@ -388,13 +389,13 @@ a {
   justify-content: space-between;
   align-items: center;
   padding-top: 14px;
-  font-size: 10px;
+  font-size: 12px;
 }
 .receipt-subtotal strong {
   font-size: 19px;
 }
 .receipt-section .section-intro {
-  font-size: 11px;
+  font-size: 15px;
   margin-bottom: 0;
 }
 .receipt-project details summary {
@@ -403,7 +404,7 @@ a {
   display: flex;
   justify-content: space-between;
   padding: 9px 0;
-  font-size: 10px;
+  font-size: 12px;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -414,24 +415,24 @@ a {
   transform: rotate(45deg);
 }
 .receipt-project details p {
-  font-size: 11px;
+  font-size: 15px;
 }
 .receipt-section .project-tech {
   color: var(--muted-ink);
-  font-size: 9px;
+  font-size: 12px;
 }
 .project-links {
   display: flex;
   gap: 20px;
   text-transform: uppercase;
-  font-size: 10px;
+  font-size: 12px;
 }
 .project-links a {
   text-underline-offset: 4px;
   padding: 7px 0;
 }
 .project-links > span {
-  font-size: 9px;
+  font-size: 12px;
   padding: 7px 0;
   color: var(--muted-ink);
 }
@@ -440,12 +441,12 @@ a {
   border-bottom: 1px dashed #949284;
 }
 .toolkit-list dt {
-  font-size: 11px;
+  font-size: 15px;
   font-weight: bold;
   margin-bottom: 6px;
 }
 .toolkit-list dd {
-  font-size: 11px;
+  font-size: 15px;
   line-height: 1.85;
 }
 .receipt-contact {
@@ -456,7 +457,7 @@ a {
 }
 .contact-total > span {
   display: block;
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.18em;
   margin-bottom: 13px;
 }
@@ -468,7 +469,7 @@ a {
 }
 .email-link {
   display: inline-block;
-  font-size: 12px;
+  font-size: 16px;
   text-underline-offset: 5px;
   padding: 10px 0;
 }
@@ -476,7 +477,7 @@ a {
   display: flex;
   justify-content: center;
   gap: 24px;
-  font-size: 9px;
+  font-size: 12px;
   margin: 15px 0 25px;
 }
 .contact-links a {
@@ -498,7 +499,7 @@ a {
     inset 0 0 0 4px var(--red);
 }
 .thank-you-stamp span {
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.18em;
 }
 .receipt-barcode {
@@ -522,21 +523,21 @@ a {
   );
 }
 .receipt-section .receipt-signoff {
-  font-size: 8px;
+  font-size: 11px;
   line-height: 1.9;
   margin: 12px 0 8px;
 }
 .receipt-signoff span {
   display: block;
   margin-top: 13px;
-  font-size: 9px;
+  font-size: 12px;
 }
 .printer {
   position: fixed;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: min(720px, calc(100% - 24px));
+  width: min(880px, calc(100% - 24px));
   z-index: 10;
   height: 139px;
   padding-top: 19px;
@@ -695,7 +696,7 @@ a {
     background: #f8f7ee;
   }
 }
-@media (max-width: 1130px) {
+@media (max-width: 1320px) {
   .receipt-nav,
   .desk-note {
     display: none;
@@ -706,7 +707,7 @@ a {
     scroll-padding-bottom: 136px;
   }
   .receipt-scene {
-    padding: 94px 20px 168px;
+    padding: 94px 14px 168px;
   }
   .desk-header {
     top: 22px;
@@ -717,22 +718,22 @@ a {
     font-size: 8px;
   }
   .receipt-inner {
-    padding: 24px 25px 32px;
+    padding: 24px 22px 32px;
   }
   .receipt-topline {
-    font-size: 7px;
+    font-size: 10px;
   }
   .receipt-masthead h1 {
     font-size: 76px;
   }
   .receipt-order {
-    font-size: 8px;
+    font-size: 11px;
   }
   .receipt-emblem {
     margin-top: 25px;
   }
   .receipt-heading {
-    font-size: 11px;
+    font-size: 14px;
     gap: 9px;
   }
   .receipt-section {
@@ -746,7 +747,7 @@ a {
     text-align: left;
   }
   .receipt-facts {
-    font-size: 9px;
+    font-size: 12px;
   }
   .about-title {
     font-size: 22px;
@@ -802,8 +803,17 @@ a {
   .contact-total strong {
     font-size: 29px;
   }
+  .receipt-topline,
+  .receipt-order {
+    gap: 12px;
+  }
+  .receipt-topline > span:last-child,
+  .receipt-order > span:last-child {
+    text-align: right;
+  }
   .contact-links {
-    gap: 18px;
+    flex-wrap: wrap;
+    gap: 14px;
   }
 }
 @media (max-width: 360px) {
@@ -818,7 +828,7 @@ a {
     font-size: 12px;
   }
   .receipt-order {
-    font-size: 7px;
+    font-size: 10px;
   }
   .receipt-facts > div {
     flex-wrap: wrap;
