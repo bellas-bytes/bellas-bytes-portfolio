@@ -127,8 +127,39 @@ function Printer() {
 }
 
 export default function ReceiptPortfolio() {
+  const [originalColors, setOriginalColors] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+  useEffect(() => {
+    let frame = 0;
+    const measure = () => {
+      const current = sections
+        .filter((section) => {
+          const element = document.getElementById(section.id);
+          return (
+            element &&
+            element.getBoundingClientRect().top <= window.innerHeight * 0.35
+          );
+        })
+        .pop();
+      setActiveSection(current?.id || "");
+      frame = 0;
+    };
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(measure);
+    };
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    measure();
+    return () => {
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      cancelAnimationFrame(frame);
+    };
+  }, []);
   return (
-    <div className="receipt-scene">
+    <div
+      className={`receipt-scene ${originalColors ? "original-colors" : "thermal-colors"}`}
+    >
       <a className="skip-link" href="#about">
         Skip to content
       </a>
@@ -148,7 +179,11 @@ export default function ReceiptPortfolio() {
       <nav className="receipt-nav" aria-label="Portfolio sections">
         <p>ON THIS RECEIPT</p>
         {sections.map((s, i) => (
-          <a href={`#${s.id}`} key={s.id}>
+          <a
+            href={`#${s.id}`}
+            key={s.id}
+            aria-current={activeSection === s.id ? "location" : undefined}
+          >
             <span>0{i + 1}</span>
             {s.label}
           </a>
@@ -182,23 +217,41 @@ export default function ReceiptPortfolio() {
               <span className="masthead-dot">®</span>
             </h1>
             <p className="receipt-name">ISABELLA NGUYEN</p>
-            <p>
-              Developer. Curious human.
+            <p className="hero-role">
+              Software developer
               <br />
-              Building the behind the scenes.
+              <span>DevOps, infrastructure & applied AI</span>
             </p>
-            <div className="receipt-order">
-              <span>ORDER #0001</span>
-              <span>DEVOPS / INFRA / AI</span>
+            <p className="hero-credentials">
+              Previously at <strong>Confluent</strong> & <strong>RBC</strong>
+              <br />
+              Computer Science at the University of Toronto
+            </p>
+            <div className="hero-shortcuts" aria-label="Quick links">
+              <a href="#experience">Work ↓</a>
+              <a href="#projects">Projects ↓</a>
+              <a href={resume} target="_blank" rel="noreferrer">
+                Résumé ↗
+              </a>
             </div>
-            <p className="receipt-welcome">
-              A little about me. A few things I’ve made.
-              <br />
-              Thanks for stopping by.
-            </p>
-            <a className="scroll-invitation" href="#about">
-              SCROLL TO PRINT YOUR RECEIPT <span>↓</span>
-            </a>
+            <div className="work-peek">
+              {projects
+                .filter((project) => project.preview)
+                .map((project) => (
+                  <a href={`#${project.id}`} key={project.id}>
+                    <img
+                      src={`${process.env.PUBLIC_URL}/images/projects/${project.preview!.image}`}
+                      alt=""
+                      width="400"
+                      height="150"
+                    />
+                    <span>
+                      {project.title} <span aria-hidden="true">↘</span>
+                    </span>
+                  </a>
+                ))}
+            </div>
+            <p className="peek-note">a little logic. a little atmosphere.</p>
           </header>
           <section id="about" className="receipt-section">
             <ReceiptHeading number="01" title="The introduction" />
@@ -263,11 +316,48 @@ export default function ReceiptPortfolio() {
           </section>
           <section id="projects" className="receipt-section">
             <ReceiptHeading number="03" title="Selected projects" />
-            <p className="section-intro">
-              From a small “what if” to something real.
-            </p>
+            <div className="project-introduction">
+              <p className="section-intro">
+                From a small “what if” to something real.
+              </p>
+              <button
+                type="button"
+                className="color-toggle"
+                aria-pressed={originalColors}
+                onClick={() => setOriginalColors(!originalColors)}
+              >
+                {originalColors ? "Use receipt ink" : "Show original colors"}
+              </button>
+            </div>
             {projects.map((project, i) => (
-              <article className="receipt-project" key={project.id}>
+              <article
+                className={`receipt-project ${project.preview ? "visual-project" : ""}`}
+                id={project.id}
+                key={project.id}
+              >
+                {project.preview && (
+                  <figure className="project-print">
+                    <a
+                      href={project.preview.source}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={`View ${project.title} ${project.id === "proj-1" ? "on Devpost" : "live website"}`}
+                    >
+                      <img
+                        src={`${process.env.PUBLIC_URL}/images/projects/${project.preview.image}`}
+                        alt={project.preview.alt}
+                        width={project.id === "proj-1" ? 806 : 1280}
+                        height={project.id === "proj-1" ? 454 : 850}
+                        loading="lazy"
+                      />
+                    </a>
+                    <figcaption>
+                      <span>{project.preview.caption}</span>
+                      <span className="print-number">FIG. 0{i + 1}</span>
+                    </figcaption>
+                    <p className="project-annotation">{project.preview.note}</p>
+                  </figure>
+                )}
                 <div className="item-heading">
                   <h3>
                     <span className="item-number">0{i + 1}</span>
@@ -280,6 +370,12 @@ export default function ReceiptPortfolio() {
                     ? "A personal portfolio, printed with a little personality. DevOps, infrastructure, and applied AI on one continuous receipt."
                     : project.tagline}
                 </p>
+                {project.id === "proj-1" && (
+                  <p className="project-outcome">
+                    <strong>1,000+</strong> simulated family units for
+                    evacuation planning.
+                  </p>
+                )}
                 <details>
                   <summary>
                     Read the details <span aria-hidden="true">+</span>

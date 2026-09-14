@@ -834,6 +834,228 @@ a {
     flex-wrap: wrap;
   }
 }
+/* Project prints add visual rhythm without distressing the reading text. */
+.receipt-masthead .receipt-emblem {
+  font-size: 24px;
+  margin: 17px 0 12px;
+}
+.receipt-masthead h1 {
+  font-size: 76px;
+  margin-bottom: 20px;
+}
+.receipt-masthead .hero-role {
+  margin: 8px 0;
+  font-weight: bold;
+}
+.hero-role span {
+  font-size: 14px;
+  font-weight: normal;
+}
+.receipt-masthead .hero-credentials {
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 12px 0 16px;
+}
+.hero-credentials strong {
+  text-decoration: underline;
+  text-decoration-color: var(--red);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+.hero-shortcuts {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 0 0 22px;
+}
+.hero-shortcuts a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 8px 18px;
+  border: 1px solid var(--red);
+  color: var(--red);
+  font-size: 13px;
+  text-decoration: none;
+}
+.hero-shortcuts a:first-child {
+  background: var(--red);
+  color: var(--paper);
+}
+.work-peek {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  text-align: left;
+}
+.work-peek a {
+  min-width: 0;
+  text-decoration: none;
+}
+.work-peek img {
+  display: block;
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+  object-position: center;
+}
+.work-peek a > span {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 11px;
+  font-weight: bold;
+}
+.receipt-masthead .peek-note {
+  font:
+    italic 16px/1.4 Georgia,
+    serif;
+  color: var(--red);
+  margin: 8px 0 0;
+  transform: rotate(-2deg);
+}
+.thermal-colors .work-peek img,
+.thermal-colors .project-print img {
+  filter: grayscale(1) sepia(0.16) contrast(1.08);
+}
+.receipt-nav a[aria-current="location"] {
+  color: var(--red);
+  font-weight: bold;
+}
+.receipt-nav a[aria-current="location"] > span {
+  opacity: 1;
+}
+.project-introduction {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+.project-introduction .section-intro {
+  margin: 0;
+}
+.color-toggle {
+  font: inherit;
+  font-size: 11px;
+  min-height: 44px;
+  color: var(--red);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+  padding: 8px 0;
+}
+.receipt-project {
+  scroll-margin-top: 35px;
+}
+.project-print {
+  position: relative;
+  margin-bottom: 27px;
+}
+.project-print > a {
+  display: block;
+  background: #e8e5d9;
+  border: 1px solid #44483b30;
+}
+.project-print img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.project-print figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 10px;
+  color: var(--muted-ink);
+  font-size: 11px;
+  line-height: 1.6;
+}
+.print-number {
+  white-space: nowrap;
+}
+.receipt-section .project-annotation {
+  color: var(--red);
+  font:
+    italic 18px/1.4 Georgia,
+    serif;
+  text-align: right;
+  transform: rotate(-2deg);
+  margin: 12px 0;
+}
+.visual-project .item-heading h3 {
+  font-size: 25px;
+  letter-spacing: -0.6px;
+}
+.receipt-section .project-outcome {
+  border-left: 2px solid var(--red);
+  padding: 8px 0 8px 16px;
+  font-size: 13px;
+}
+.project-outcome strong {
+  color: var(--red);
+  font-size: 24px;
+}
+.visual-project .project-links a {
+  color: var(--red);
+  font-weight: bold;
+}
+.email-link {
+  color: var(--red);
+  font-weight: bold;
+}
+@media (hover: hover) and (pointer: fine) {
+  .hero-shortcuts a:hover {
+    background: var(--red);
+    color: var(--paper);
+  }
+  .work-peek a:hover > span {
+    color: var(--red);
+  }
+}
+@media (max-width: 640px) {
+  .receipt-masthead h1 {
+    font-size: 64px;
+  }
+  .receipt-masthead .hero-role {
+    font-size: 15px;
+  }
+  .hero-role span {
+    font-size: 12px;
+  }
+  .receipt-masthead .hero-credentials {
+    font-size: 12px;
+  }
+  .hero-shortcuts {
+    gap: 8px;
+  }
+  .hero-shortcuts a {
+    font-size: 12px;
+    padding: 8px 11px;
+  }
+  .work-peek {
+    gap: 12px;
+  }
+  .work-peek img {
+    height: 83px;
+  }
+  .work-peek a > span {
+    font-size: 10px;
+    gap: 4px;
+  }
+  .project-print figcaption {
+    font-size: 10px;
+  }
+  .visual-project .item-heading h3 {
+    font-size: 22px;
+  }
+  .receipt-section .project-annotation {
+    font-size: 16px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
