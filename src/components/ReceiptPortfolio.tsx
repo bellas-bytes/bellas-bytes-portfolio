@@ -1,3 +1,4 @@
+import ReceiptDoodle from "./ReceiptDoodle";
 import { useEffect, useState } from "react";
 import { experiences } from "../data/experiences";
 import { projects } from "../data/projects";
@@ -269,7 +270,7 @@ export default function ReceiptPortfolio() {
               <span>EST. IN TORONTO</span>
             </div>
             <div className="receipt-emblem" aria-hidden="true">
-              ✳
+              <ReceiptDoodle kind="stars" />
             </div>
             <h1>
               bella’s
@@ -333,9 +334,12 @@ export default function ReceiptPortfolio() {
                 <dd>Bouldering, cafés & outfits</dd>
               </div>
             </dl>
-            <p className="handwritten">
-              * probably thinking about my next coffee
-            </p>
+            <div className="intro-doodle-note">
+              <p className="handwritten">
+                * probably thinking about my next coffee
+              </p>
+              <ReceiptDoodle kind="flowers" />
+            </div>
           </section>
           <section id="experience" className="receipt-section">
             <ReceiptHeading number="02" title="Work experience" />
@@ -503,6 +507,9 @@ export default function ReceiptPortfolio() {
               <a href={resume} target="_blank" rel="noreferrer">
                 RÉSUMÉ ↗
               </a>
+            </div>
+            <div className="contact-doodle">
+              <ReceiptDoodle kind="puppy" />
             </div>
             <div className="thank-you-stamp">
               THANK YOU

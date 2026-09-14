@@ -993,3 +993,52 @@ a {
     margin: 0 auto 24px;
   }
 }
+
+/* Doodles have reserved space and never sit over text or interactive elements. */
+.receipt-doodle {
+  display: block;
+  flex-shrink: 0;
+  color: var(--ink);
+  pointer-events: none;
+}
+.receipt-emblem .doodle-stars {
+  width: 150px;
+  height: 63px;
+  margin: 0 auto;
+}
+.intro-doodle-note {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  clear: both;
+}
+.intro-doodle-note .handwritten {
+  flex: 1;
+}
+.doodle-flowers {
+  width: 100px;
+  height: 110px;
+}
+.contact-doodle {
+  display: flex;
+  justify-content: center;
+  margin: 24px 0 -12px;
+}
+.doodle-puppy {
+  width: 120px;
+  height: 112px;
+}
+@media (max-width: 640px) {
+  .receipt-emblem .doodle-stars {
+    width: 125px;
+    height: 52px;
+  }
+  .intro-doodle-note {
+    gap: 12px;
+  }
+  .doodle-flowers {
+    width: 74px;
+    height: 88px;
+  }
+}
