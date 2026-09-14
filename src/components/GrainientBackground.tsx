@@ -33,9 +33,9 @@ export default function GrainientBackground() {
           warpFrequency={5.0}
           warpSpeed={2.0}
           warpAmplitude={70.0}
-          blendAngle={20.0}
+          blendAngle={90.0}
           blendSoftness={0.12}
-          rotationAmount={350.0}
+          rotationAmount={0.0}
           noiseScale={1.6}
           grainAmount={0.035}
           grainScale={2.0}
