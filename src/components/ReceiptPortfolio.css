@@ -1052,3 +1052,57 @@ a {
     justify-content: flex-start;
   }
 }
+
+/* Personal notes use real handwriting, while receipt copy stays monospaced. */
+.desk-note > span,
+.receipt-section .handwritten,
+.scroll-invitation,
+.thank-you-stamp,
+.email-link,
+.receipt-nav a[aria-current="location"] {
+  font-family: "Caveat", "Segoe Print", cursive;
+  font-style: normal;
+  letter-spacing: 0;
+}
+.desk-note > span {
+  font-size: 28px;
+  line-height: 1.15;
+}
+.receipt-section .handwritten {
+  font-size: 24px;
+  line-height: 1.3;
+}
+.scroll-invitation {
+  font-size: 19px;
+  font-weight: 600;
+}
+.thank-you-stamp {
+  font-size: 32px;
+  font-weight: 600;
+}
+.thank-you-stamp span {
+  font-size: 16px;
+  letter-spacing: 0.06em;
+}
+.email-link {
+  font-size: 23px;
+  font-weight: 600;
+}
+.receipt-nav a[aria-current="location"] {
+  font-size: 20px;
+  font-weight: 600;
+}
+.receipt-nav a[aria-current="location"] > span {
+  font-family: "Courier New", monospace;
+}
+@media (max-width: 640px) {
+  .receipt-section .handwritten {
+    font-size: 22px;
+  }
+  .scroll-invitation {
+    font-size: 17px;
+  }
+  .email-link {
+    font-size: 21px;
+  }
+}
