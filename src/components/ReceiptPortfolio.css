@@ -858,7 +858,7 @@ a {
 }
 .project-print {
   position: relative;
-  margin-bottom: 27px;
+  margin: 22px 0 27px;
 }
 .project-print > a {
   display: block;

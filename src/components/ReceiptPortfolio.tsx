@@ -380,6 +380,23 @@ export default function ReceiptPortfolio() {
                 id={project.id}
                 key={project.id}
               >
+                <div className="item-heading">
+                  <h3>
+                    <span className="item-number">0{i + 1}</span>
+                    {project.title}
+                  </h3>
+                  <span className="project-meta">
+                    {project.status && (
+                      <span className="project-status">{project.status}</span>
+                    )}
+                    <span>{project.year}</span>
+                  </span>
+                </div>
+                <p>
+                  {project.id === "proj-4"
+                    ? "A personal portfolio, printed with a little personality. DevOps, infrastructure, and applied AI on one continuous receipt."
+                    : project.tagline}
+                </p>
                 {project.preview && (
                   <figure className="project-print">
                     <a
@@ -402,23 +419,6 @@ export default function ReceiptPortfolio() {
                     </figcaption>
                   </figure>
                 )}
-                <div className="item-heading">
-                  <h3>
-                    <span className="item-number">0{i + 1}</span>
-                    {project.title}
-                  </h3>
-                  <span className="project-meta">
-                    {project.status && (
-                      <span className="project-status">{project.status}</span>
-                    )}
-                    <span>{project.year}</span>
-                  </span>
-                </div>
-                <p>
-                  {project.id === "proj-4"
-                    ? "A personal portfolio, printed with a little personality. DevOps, infrastructure, and applied AI on one continuous receipt."
-                    : project.tagline}
-                </p>
                 <details>
                   <summary>
                     Read the details <span aria-hidden="true">+</span>
