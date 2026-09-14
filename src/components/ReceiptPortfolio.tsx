@@ -160,6 +160,67 @@ export default function ReceiptPortfolio() {
     <div
       className={`receipt-scene ${originalColors ? "original-colors" : "thermal-colors"}`}
     >
+      <svg
+        className="thermal-filter-definitions"
+        aria-hidden="true"
+        focusable="false"
+        width="0"
+        height="0"
+      >
+        <defs>
+          <filter
+            id="thermal-dither"
+            colorInterpolationFilters="sRGB"
+            x="0"
+            y="0"
+            width="100%"
+            height="100%"
+          >
+            <feColorMatrix
+              in="SourceGraphic"
+              type="saturate"
+              values="0"
+              result="gray"
+            />
+            <feComponentTransfer in="gray" result="exposure">
+              <feFuncR type="gamma" amplitude="1" exponent="1.25" offset="0" />
+              <feFuncG type="gamma" amplitude="1" exponent="1.25" offset="0" />
+              <feFuncB type="gamma" amplitude="1" exponent="1.25" offset="0" />
+            </feComponentTransfer>
+            <feImage
+              href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%224%22%20height%3D%224%22%20viewBox%3D%220%200%204%204%22%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22rgb%288%2C8%2C8%29%22%2F%3E%3Crect%20x%3D%221%22%20y%3D%220%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22rgb%28135%2C135%2C135%29%22%2F%3E%3Crect%20x%3D%222%22%20y%3D%220%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22rgb%2840%2C40%2C40%29%22%2F%3E%3Crect%20x%3D%223%22%20y%3D%220%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22rgb%28167%2C167%2C167%29%22%2F%3E%3Crect%20x%3D%220%22%20y%3D%221%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22rgb%28199%2C199%2C199%29%22%2F%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22rgb%2872%2C72%2C72%29%22%2F%3E%3Crect%20x%3D%222%22%20y%3D%221%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22rgb%28231%2C231%2C231%29%22%2F%3E%3Crect%20x%3D%223%22%20y%3D%221%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22rgb%28104%2C104%2C104%29%22%2F%3E%3Crect%20x%3D%220%22%20y%3D%222%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22rgb%2856%2C56%2C56%29%22%2F%3E%3Crect%20x%3D%221%22%20y%3D%222%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22rgb%28183%2C183%2C183%29%22%2F%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22rgb%2824%2C24%2C24%29%22%2F%3E%3Crect%20x%3D%223%22%20y%3D%222%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22rgb%28151%2C151%2C151%29%22%2F%3E%3Crect%20x%3D%220%22%20y%3D%223%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22rgb%28247%2C247%2C247%29%22%2F%3E%3Crect%20x%3D%221%22%20y%3D%223%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22rgb%28120%2C120%2C120%29%22%2F%3E%3Crect%20x%3D%222%22%20y%3D%223%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22rgb%28215%2C215%2C215%29%22%2F%3E%3Crect%20x%3D%223%22%20y%3D%223%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22rgb%2888%2C88%2C88%29%22%2F%3E%3C%2Fsvg%3E"
+              x="0"
+              y="0"
+              width="4"
+              height="4"
+              preserveAspectRatio="none"
+              result="matrix"
+            />
+            <feTile in="matrix" result="threshold" />
+            <feComposite
+              in="exposure"
+              in2="threshold"
+              operator="arithmetic"
+              k1="0"
+              k2="1"
+              k3="-1"
+              k4="0.5"
+              result="compared"
+            />
+            <feComponentTransfer in="compared" result="dots">
+              <feFuncR type="discrete" tableValues="0 1" />
+              <feFuncG type="discrete" tableValues="0 1" />
+              <feFuncB type="discrete" tableValues="0 1" />
+              <feFuncA type="linear" slope="0" intercept="1" />
+            </feComponentTransfer>
+            <feColorMatrix
+              in="dots"
+              type="matrix"
+              values="0 0 0 0 0.141 0 0 0 0 0.153 0 0 0 0 0.125 -1 0 0 0 1"
+            />
+          </filter>
+        </defs>
+      </svg>
       <a className="skip-link" href="#about">
         Skip to content
       </a>
@@ -217,41 +278,23 @@ export default function ReceiptPortfolio() {
               <span className="masthead-dot">®</span>
             </h1>
             <p className="receipt-name">ISABELLA NGUYEN</p>
-            <p className="hero-role">
-              Software developer
+            <p>
+              Developer. Curious human.
               <br />
-              <span>DevOps, infrastructure & applied AI</span>
+              Building the behind the scenes.
             </p>
-            <p className="hero-credentials">
-              Previously at <strong>Confluent</strong> & <strong>RBC</strong>
+            <div className="receipt-order">
+              <span>ORDER #0001</span>
+              <span>DEVOPS / INFRA / AI</span>
+            </div>
+            <p className="receipt-welcome">
+              A little about me. A few things I’ve made.
               <br />
-              Computer Science at the University of Toronto
+              Thanks for stopping by.
             </p>
-            <div className="hero-shortcuts" aria-label="Quick links">
-              <a href="#experience">Work ↓</a>
-              <a href="#projects">Projects ↓</a>
-              <a href={resume} target="_blank" rel="noreferrer">
-                Résumé ↗
-              </a>
-            </div>
-            <div className="work-peek">
-              {projects
-                .filter((project) => project.preview)
-                .map((project) => (
-                  <a href={`#${project.id}`} key={project.id}>
-                    <img
-                      src={`${process.env.PUBLIC_URL}/images/projects/${project.preview!.image}`}
-                      alt=""
-                      width="400"
-                      height="150"
-                    />
-                    <span>
-                      {project.title} <span aria-hidden="true">↘</span>
-                    </span>
-                  </a>
-                ))}
-            </div>
-            <p className="peek-note">a little logic. a little atmosphere.</p>
+            <a className="scroll-invitation" href="#about">
+              SCROLL TO PRINT YOUR RECEIPT <span>↓</span>
+            </a>
           </header>
           <section id="about" className="receipt-section">
             <ReceiptHeading number="01" title="The introduction" />
