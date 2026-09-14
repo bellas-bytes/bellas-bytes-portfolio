@@ -2,12 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import "./PaperToss.css";
 
 export default function PaperToss() {
-  const [crumpling, setCrumpling] = useState(false);
-  const receiptCopy = useRef<HTMLElement | null>(null);
-  const ballPrint = useRef<HTMLDivElement>(null);
-  const restoreReceipt = useRef<() => void>(() => {});
-  const transition = useRef<Animation | null>(null);
-  const transitionLayer = useRef<HTMLElement | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
@@ -23,102 +17,6 @@ export default function PaperToss() {
   const drag = useRef(false);
   const frame = useRef(0);
 
-  useEffect(
-    () => () => {
-      transition.current?.cancel();
-      transitionLayer.current?.remove();
-      restoreReceipt.current();
-    },
-    [],
-  );
-
-  useEffect(() => {
-    if (open && ballPrint.current && receiptCopy.current) {
-      const copy = receiptCopy.current.cloneNode(true) as HTMLElement;
-      const width = Number(copy.dataset.printWidth);
-      const height = Number(copy.dataset.printHeight);
-      copy.style.cssText = `width:${width}px;height:${height}px;margin:0;transform-origin:top left;transform:scale(${48 / width},${48 / height});pointer-events:none;`;
-      ballPrint.current.replaceChildren(copy);
-    }
-  }, [open]);
-
-  const crumple = async () => {
-    if (crumpling) return;
-    const receipt = trigger.current?.closest<HTMLElement>(".receipt-paper");
-    if (!receipt) return;
-    const rect = receipt.getBoundingClientRect();
-    const copy = receipt.cloneNode(true) as HTMLElement;
-    copy.querySelectorAll("[id]").forEach((node) => node.removeAttribute("id"));
-    copy.removeAttribute("id");
-    copy.classList.add("thermal-colors");
-    const creases = document.createElement("div");
-    creases.className = "receipt-crumple-creases";
-    copy.appendChild(creases);
-    copy.querySelectorAll("button, dialog").forEach((node) => node.remove());
-    copy.setAttribute("aria-hidden", "true");
-    copy.setAttribute("inert", "");
-    copy.dataset.printWidth = String(rect.width);
-    copy.dataset.printHeight = String(rect.height);
-    receiptCopy.current = copy;
-    setCrumpling(true);
-    const previousVisibility = receipt.style.visibility;
-    const previousOverflow = document.body.style.overflow;
-    restoreReceipt.current = () => {
-      receipt.style.visibility = previousVisibility;
-      document.body.style.overflow = previousOverflow;
-    };
-    document.body.style.overflow = "hidden";
-    receipt.style.visibility = "hidden";
-    const layer = copy.cloneNode(true) as HTMLElement;
-    layer.style.cssText = `position:fixed;left:${rect.left}px;top:${rect.top}px;width:${rect.width}px;height:${rect.height}px;margin:0;z-index:9999;pointer-events:none;transform-origin:top left;overflow:hidden;`;
-    document.body.appendChild(layer);
-    transitionLayer.current = layer;
-    const x = window.innerWidth / 2 - rect.left;
-    const y = window.innerHeight / 2 - rect.top;
-    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const shape =
-      "polygon(8% 28%,28% 3%,64% 0%,94% 28%,100% 65%,73% 100%,28% 96%,0% 64%)";
-    const animation = layer.animate(
-      [
-        {
-          transform: "translate(0,0) scale(1)",
-          filter: "brightness(1)",
-          clipPath:
-            "polygon(0% 0%,33% 0%,66% 0%,100% 0%,100% 100%,66% 100%,33% 100%,0% 100%)",
-        },
-        {
-          transform: `translate(${x - rect.width * 0.28}px,${y - 190}px) scale(.56,${380 / rect.height}) skew(-7deg,3deg)`,
-          offset: 0.4,
-          filter: "brightness(.96)",
-        },
-        {
-          transform: `translate(${x - 65}px,${y - 75}px) scale(${130 / rect.width},${150 / rect.height}) skew(12deg,-8deg)`,
-          offset: 0.72,
-          clipPath: shape,
-          filter: "contrast(1.3)",
-        },
-        {
-          transform: `translate(${x - 24}px,${y - 24}px) scale(${48 / rect.width},${48 / rect.height})`,
-          clipPath: shape,
-          filter: "contrast(1.4)",
-        },
-      ],
-      { duration: reduce ? 0 : 1300, easing: "ease-in-out", fill: "forwards" },
-    );
-    transition.current = animation;
-    try {
-      await animation.finished;
-    } catch {
-      return;
-    }
-    layer.remove();
-    transitionLayer.current = null;
-    document.body.style.overflow = previousOverflow;
-    setCrumpling(false);
-    setBall({ x: 180, y: 340 });
-    setOpen(true);
-  };
-
   useEffect(() => {
     if (!open) return;
     const previous = document.body.style.overflow;
@@ -132,7 +30,6 @@ export default function PaperToss() {
   }, [open]);
 
   const close = () => {
-    restoreReceipt.current();
     dialog.current?.close();
     setOpen(false);
     setFlying(false);
@@ -197,8 +94,10 @@ export default function PaperToss() {
       <button
         ref={trigger}
         className="crumple-trigger"
-        disabled={crumpling}
-        onClick={crumple}
+        onClick={() => {
+          setBall({ x: 180, y: 340 });
+          setOpen(true);
+        }}
       >
         Done reading? Crumple this receipt ↗
       </button>
@@ -301,20 +200,33 @@ export default function PaperToss() {
                 strokeWidth="1.5"
               >
                 <path d="M-20-9 -10-21 8-22 21-9 24 7 11 23 -9 22 -23 7Z" />
-                <foreignObject
-                  x="-24"
-                  y="-24"
-                  width="48"
-                  height="48"
-                  className="toss-printed-ball"
-                >
-                  <div ref={ballPrint} aria-hidden="true" />
-                </foreignObject>
                 <path
                   d="m-20-9 16 5 12-18 -2 23 18 6 -19 5 6 11 -15-12 -19-4 19-11 10 5 -1 11"
                   fill="none"
                 />
               </g>
+            </g>
+            <g
+              className="toss-mini-receipt"
+              transform="translate(180 250)"
+              aria-hidden="true"
+            >
+              <path
+                d="M-45-90H45V80L35 75 25 80 15 75 5 80-5 75-15 80-25 75-35 80-45 75Z"
+                fill="#fffcf2"
+                stroke="#4e5147"
+              />
+              <text textAnchor="middle" y="-56" fontSize="12">
+                bella’s bytes
+              </text>
+              {[-35, -20, -5, 10, 25, 40].map((y) => (
+                <path
+                  key={y}
+                  d={`M-30 ${y}H30`}
+                  stroke="#4e5147"
+                  strokeDasharray="3 2"
+                />
+              ))}
             </g>
           </svg>
           <p className="toss-status" role="status">
