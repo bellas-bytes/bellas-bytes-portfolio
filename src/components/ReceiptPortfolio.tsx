@@ -13,7 +13,7 @@ const sections = [
   { id: "contact", label: "Say hello" },
 ];
 const resume =
-  "https://drive.google.com/file/d/1_s1jqAfBXZsYU-LRWIn7MUyPYYsjml1A/view?usp=sharing";
+  "https://drive.google.com/file/d/1FDmz0xzWoqdqg9eCg7S1irxF6xnPGPQo/view?usp=sharing";
 
 function Barcode() {
   return <div className="receipt-barcode" aria-hidden="true" />;
@@ -290,9 +290,6 @@ export default function ReceiptPortfolio() {
               <br />
               Thanks for stopping by.
             </p>
-            <a className="scroll-invitation" href="#about">
-              SCROLL TO PRINT YOUR RECEIPT <span>↓</span>
-            </a>
           </header>
           <section id="about" className="receipt-section">
             <ReceiptHeading number="01" title="The introduction" />
