@@ -857,7 +857,7 @@ a {
   font: inherit;
   font-size: 11px;
   min-height: 44px;
-  color: var(--red);
+  color: var(--ink);
   text-decoration: underline;
   text-underline-offset: 4px;
   cursor: pointer;
@@ -892,30 +892,12 @@ a {
 .print-number {
   white-space: nowrap;
 }
-.receipt-section .project-annotation {
-  color: var(--red);
-  font:
-    italic 18px/1.4 Georgia,
-    serif;
-  text-align: right;
-  transform: rotate(-2deg);
-  margin: 12px 0;
-}
 .visual-project .item-heading h3 {
   font-size: 25px;
   letter-spacing: -0.6px;
 }
-.receipt-section .project-outcome {
-  border-left: 2px solid var(--red);
-  padding: 8px 0 8px 16px;
-  font-size: 13px;
-}
-.project-outcome strong {
-  color: var(--red);
-  font-size: 24px;
-}
 .visual-project .project-links a {
-  color: var(--red);
+  color: var(--ink);
   font-weight: bold;
 }
 .email-link {
@@ -930,9 +912,6 @@ a {
   }
   .visual-project .item-heading h3 {
     font-size: 22px;
-  }
-  .receipt-section .project-annotation {
-    font-size: 16px;
   }
 }
 
@@ -984,4 +963,10 @@ a {
 .thermal-colors .project-print > a {
   background: transparent;
   border-color: transparent;
+}
+
+@media (hover: hover) {
+  #projects .project-links a:hover {
+    color: var(--ink);
+  }
 }

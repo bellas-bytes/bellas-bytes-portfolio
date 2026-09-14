@@ -17,7 +17,6 @@ export type Project = {
     alt: string;
     caption: string;
     source: string;
-    note: string;
   };
 };
 export const projects: Project[] = [
@@ -28,7 +27,6 @@ export const projects: Project[] = [
       alt: "CrisisNet presentation artwork showing a neighborhood and the message Building safety through readiness",
       caption: "CrisisNet · presentation artwork",
       source: "https://devpost.com/software/crisisnet-ekq1jp",
-      note: "AI meets real-world problems",
     },
     title: "CrisisNet",
     year: "2026",
@@ -56,7 +54,6 @@ export const projects: Project[] = [
       alt: "Kinora and Company live website with a candle-lit table, monochrome interior, and centered Kinora logo",
       caption: "Kinora & Company · live website",
       source: "https://kinora-company.vercel.app",
-      note: "Go on, light the candle ↗",
     },
     title: "Kinora & Company",
     year: "2026",

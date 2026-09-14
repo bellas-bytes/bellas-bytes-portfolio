@@ -398,7 +398,6 @@ export default function ReceiptPortfolio() {
                       <span>{project.preview.caption}</span>
                       <span className="print-number">FIG. 0{i + 1}</span>
                     </figcaption>
-                    <p className="project-annotation">{project.preview.note}</p>
                   </figure>
                 )}
                 <div className="item-heading">
@@ -413,12 +412,6 @@ export default function ReceiptPortfolio() {
                     ? "A personal portfolio, printed with a little personality. DevOps, infrastructure, and applied AI on one continuous receipt."
                     : project.tagline}
                 </p>
-                {project.id === "proj-1" && (
-                  <p className="project-outcome">
-                    <strong>1,000+</strong> simulated family units for
-                    evacuation planning.
-                  </p>
-                )}
                 <details>
                   <summary>
                     Read the details <span aria-hidden="true">+</span>
