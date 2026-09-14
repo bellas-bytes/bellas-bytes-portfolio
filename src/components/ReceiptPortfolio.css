@@ -970,3 +970,26 @@ a {
     color: var(--ink);
   }
 }
+
+.intro-portrait {
+  float: right;
+  width: 46%;
+  margin: 0 0 20px 24px;
+}
+.intro-portrait img {
+  clip-path: inset(1px);
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: url(#thermal-dither);
+}
+#about .receipt-facts {
+  clear: both;
+}
+@media (max-width: 640px) {
+  .intro-portrait {
+    float: none;
+    width: min(100%, 340px);
+    margin: 0 auto 24px;
+  }
+}

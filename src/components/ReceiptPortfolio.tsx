@@ -298,6 +298,15 @@ export default function ReceiptPortfolio() {
           </header>
           <section id="about" className="receipt-section">
             <ReceiptHeading number="01" title="The introduction" />
+            <figure className="intro-portrait">
+              <img
+                src={`${process.env.PUBLIC_URL}/images/portraits/isabella.png`}
+                alt="Isabella wearing glasses and making a peace sign"
+                width="1448"
+                height="1086"
+                loading="lazy"
+              />
+            </figure>
             <div className="about-title">
               Hi, I’m Isabella<span className="red-asterisk">*</span>
             </div>
