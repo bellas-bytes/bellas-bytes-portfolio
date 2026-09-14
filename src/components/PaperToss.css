@@ -117,50 +117,6 @@
   outline: 2px solid #9d4238;
   outline-offset: 3px;
 }
-.toss-mini-receipt {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: receipt-crumple 0.7s ease-in forwards;
-  pointer-events: none;
-}
-.toss-paper-ball {
-  animation: ball-appear 0.7s ease-in;
-}
-@keyframes receipt-crumple {
-  0% {
-    opacity: 1;
-    scale: 1;
-    rotate: -5deg;
-  }
-  65% {
-    opacity: 1;
-    scale: 0.35 0.6;
-    rotate: 22deg;
-  }
-  100% {
-    opacity: 0;
-    scale: 0.1;
-    rotate: 75deg;
-  }
-}
-@keyframes ball-appear {
-  0%,
-  70% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .toss-mini-receipt {
-    display: none;
-  }
-  .toss-paper-ball {
-    animation: none;
-  }
-}
-
 .toss-target-description {
   position: absolute;
   width: 1px;
@@ -170,4 +126,53 @@
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
+}
+
+.paper-toss {
+  visibility: visible;
+}
+.toss-printed-ball {
+  clip-path: polygon(
+    8% 28%,
+    28% 3%,
+    64% 0%,
+    94% 28%,
+    100% 65%,
+    73% 100%,
+    28% 96%,
+    0% 64%
+  );
+  opacity: 0.8;
+  pointer-events: none;
+}
+.toss-printed-ball > div {
+  width: 48px;
+  height: 48px;
+  overflow: hidden;
+}
+
+.receipt-crumple-creases {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    conic-gradient(
+      from 30deg at 40% 45%,
+      transparent 0deg,
+      #24272038 55deg,
+      #fff8 60deg,
+      transparent 85deg,
+      #24272030 170deg,
+      #fff9 178deg,
+      transparent 210deg,
+      #24272038 280deg,
+      transparent 310deg
+    ),
+    linear-gradient(
+      135deg,
+      transparent 46%,
+      #24272028 49%,
+      #fff9 50%,
+      transparent 54%
+    );
 }
