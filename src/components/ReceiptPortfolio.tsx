@@ -1,6 +1,7 @@
 import GrainientBackground from "./GrainientBackground";
 import ReceiptDoodle from "./ReceiptDoodle";
 import { useEffect, useState } from "react";
+import { leadership } from "../data/leadership";
 import { experiences } from "../data/experiences";
 import { projects } from "../data/projects";
 import { techStack } from "../data/techStack";
@@ -10,11 +11,13 @@ const sections = [
   { id: "about", label: "The introduction" },
   { id: "experience", label: "Work experience" },
   { id: "projects", label: "Selected projects" },
+  { id: "leadership", label: "Leadership" },
   { id: "tech", label: "The toolkit" },
+  { id: "beyond", label: "Beyond the keyboard" },
   { id: "contact", label: "Say hello" },
 ];
 const resume =
-  "https://drive.google.com/file/d/1FDmz0xzWoqdqg9eCg7S1irxF6xnPGPQo/view?usp=sharing";
+  "https://drive.google.com/file/d/17ypWgHG-ujflH0Wkr4K4N0RLhLtYUR4o/view?usp=sharing";
 
 function Barcode() {
   return <div className="receipt-barcode" aria-hidden="true" />;
@@ -316,6 +319,12 @@ export default function ReceiptPortfolio() {
               AI—creating systems and developer tools that help teams move
               faster with less friction.
             </p>
+            <p>
+              Outside of tech, I enjoy bouldering, exploring new restaurants,
+              and getting creative with my outfits. I also love learning to
+              dance and am taking on hip-hop at the moment. Somewhere in
+              between, my next hair colour is still up for debate.
+            </p>
             <dl className="receipt-facts">
               <div>
                 <dt>BASED IN</dt>
@@ -326,8 +335,8 @@ export default function ReceiptPortfolio() {
                 <dd>Computer Science, UofT</dd>
               </div>
               <div>
-                <dt>OFF THE CLOCK</dt>
-                <dd>Bouldering, cafés & outfits</dd>
+                <dt>EXPECTED GRADUATION</dt>
+                <dd>December 2026</dd>
               </div>
             </dl>
             <div className="intro-doodle-note">
@@ -452,8 +461,35 @@ export default function ReceiptPortfolio() {
               <strong>{String(projects.length).padStart(2, "0")}</strong>
             </div>
           </section>
+          <section id="leadership" className="receipt-section">
+            <ReceiptHeading number="04" title="Leadership" />
+            <div className="receipt-column-label">
+              <span>ROLE / COMMUNITY</span>
+              <span>PERIOD</span>
+            </div>
+            {leadership.map((entry, i) => (
+              <article className="receipt-job" key={entry.id}>
+                <div className="item-heading">
+                  <h3>
+                    <span className="item-number">0{i + 1}</span>
+                    {entry.organization}
+                  </h3>
+                  <span>{entry.period}</span>
+                </div>
+                <p className="job-role">{entry.role}</p>
+                <p className="job-team">
+                  {entry.team} · {entry.location}
+                </p>
+                <ul className="receipt-bullets">
+                  {entry.highlights.map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </section>
           <section id="tech" className="receipt-section">
-            <ReceiptHeading number="04" title="The toolkit" />
+            <ReceiptHeading number="05" title="The toolkit" />
             <p className="section-intro">A few ingredients I reach for.</p>
             <dl className="toolkit-list">
               {techStack.map((category) => (
@@ -464,8 +500,92 @@ export default function ReceiptPortfolio() {
               ))}
             </dl>
           </section>
+          <section id="beyond" className="receipt-section">
+            <ReceiptHeading number="06" title="Beyond the keyboard" />
+            <article className="receipt-essay">
+              <p className="essay-label">A PERSONAL NOTE · 3 MIN READ</p>
+              <h3>On the other side of the counter</h3>
+              <p>
+                It’s easy for me to get consumed by tech. Between what I’m
+                building, what I’m learning, and the community around it, it can
+                start to feel like my whole world.
+              </p>
+              <p>
+                Working outside of CS gives me a chance to step into someone
+                else’s day.
+              </p>
+              <details className="essay-details">
+                <summary>
+                  <span className="essay-read">Read the story</span>
+                  <span className="essay-hide">Close the story</span>
+                </summary>
+                <div className="essay-body">
+                  <p>
+                    I love the everyday interactions that come with working
+                    behind a counter or serving a table. Remembering a regular’s
+                    order. Helping someone new find something they might like.
+                    Having a conversation that has nothing to do with school,
+                    careers, or the latest thing happening in tech.
+                  </p>
+                  <p>
+                    There’s something satisfying about being a small source of
+                    joy in someone’s day. The interaction might only last a few
+                    minutes, but I like having the chance to make those minutes
+                    good.
+                  </p>
+                  <p>
+                    One customer in particular has stayed with me. She would
+                    come in regularly and talk about her day, often with her
+                    boyfriend. Over time, those conversations became a familiar
+                    part of work.
+                  </p>
+                  <p>
+                    Then one day, she came in and announced that they were
+                    engaged.
+                  </p>
+                  <p>
+                    I still think about that. Someone I knew through these
+                    little everyday visits had a huge piece of news, and I got
+                    to hear it. I had seen small pieces of her life as they
+                    happened, and now I was there for this one, too.
+                  </p>
+                  <p>
+                    After I left the job, I heard that regulars had asked where
+                    I was. It was such a small thing, but it meant a lot to know
+                    that they remembered me and noticed I wasn’t there anymore.
+                    Those familiar conversations had become part of their
+                    routines, just as they had become part of mine.
+                  </p>
+                  <p>
+                    It’s also nice to know that I’m known for something beyond
+                    being a developer. To some people, I’m a familiar face who
+                    remembers their order, has a recommendation ready, or takes
+                    a moment to hear about their day. That part of who I am
+                    matters to me.
+                  </p>
+                  <p>
+                    Those are the stories I love being around for. You don’t
+                    know when someone walks through the door whether it will be
+                    an ordinary visit or a day they’ll remember for years. Most
+                    of the time, it’s an ordinary visit. I enjoy those, too.
+                  </p>
+                  <p>
+                    My work outside of CS gives me a different kind of
+                    fulfillment. I get to meet people whose lives and interests
+                    might have very little overlap with mine, and find something
+                    to connect over anyway. It reminds me how much is happening
+                    beyond the world I spend so much time in.
+                  </p>
+                  <p>
+                    I love building things. I also love remembering someone’s
+                    order and asking how their day has been.
+                  </p>
+                </div>
+              </details>
+            </article>
+          </section>
           <section id="contact" className="receipt-section receipt-contact">
-            <ReceiptHeading number="05" title="Say hello" />
+            <ReceiptHeading number="07" title="Say hello" />
             <p className="contact-total">
               <span>NEXT UP</span>
               <strong>

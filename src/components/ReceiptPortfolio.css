@@ -1102,6 +1102,36 @@ a {
 }
 
 .receipt-ambience {
-  background:
-    linear-gradient(to bottom, #d4dde1, #a9b9c6 50%, #829dad);
+  background: linear-gradient(to bottom, #d4dde1, #a9b9c6 50%, #829dad);
+}
+
+.receipt-essay h3 {
+  font-size: 24px;
+  line-height: 1.4;
+  margin: 14px 0 22px;
+}
+.receipt-essay .essay-label {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--muted-ink);
+}
+.receipt-essay p {
+  line-height: 1.85;
+  margin: 0 0 22px;
+}
+.essay-details summary {
+  cursor: pointer;
+  padding: 12px 0;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.essay-hide,
+.essay-details[open] .essay-read {
+  display: none;
+}
+.essay-details[open] .essay-hide {
+  display: inline;
+}
+.essay-body {
+  padding-top: 20px;
 }
