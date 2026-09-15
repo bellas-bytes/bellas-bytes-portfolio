@@ -16,7 +16,7 @@ const sections = [
   { id: "contact", label: "Say hello" },
 ];
 const resume =
-  "https://drive.google.com/file/d/1FDmz0xzWoqdqg9eCg7S1irxF6xnPGPQo/view?usp=sharing";
+  "https://drive.google.com/file/d/17ypWgHG-ujflH0Wkr4K4N0RLhLtYUR4o/view?usp=sharing";
 
 function Barcode() {
   return <div className="receipt-barcode" aria-hidden="true" />;
