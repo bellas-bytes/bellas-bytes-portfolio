@@ -10,8 +10,8 @@ import "./ReceiptPortfolio.css";
 const sections = [
   { id: "about", label: "The introduction" },
   { id: "experience", label: "Work experience" },
-  { id: "leadership", label: "Leadership" },
   { id: "projects", label: "Selected projects" },
+  { id: "leadership", label: "Leadership" },
   { id: "tech", label: "The toolkit" },
   { id: "beyond", label: "Beyond the keyboard" },
   { id: "contact", label: "Say hello" },
@@ -335,8 +335,8 @@ export default function ReceiptPortfolio() {
                 <dd>Computer Science, UofT</dd>
               </div>
               <div>
-                <dt>OFF THE CLOCK</dt>
-                <dd>Bouldering, cafés & outfits</dd>
+                <dt>EXPECTED GRADUATION</dt>
+                <dd>December 2026</dd>
               </div>
             </dl>
             <div className="intro-doodle-note">
@@ -375,35 +375,8 @@ export default function ReceiptPortfolio() {
               <strong>03</strong>
             </div>
           </section>
-          <section id="leadership" className="receipt-section">
-            <ReceiptHeading number="03" title="Leadership" />
-            <div className="receipt-column-label">
-              <span>ROLE / COMMUNITY</span>
-              <span>PERIOD</span>
-            </div>
-            {leadership.map((entry, i) => (
-              <article className="receipt-job" key={entry.id}>
-                <div className="item-heading">
-                  <h3>
-                    <span className="item-number">0{i + 1}</span>
-                    {entry.organization}
-                  </h3>
-                  <span>{entry.period}</span>
-                </div>
-                <p className="job-role">{entry.role}</p>
-                <p className="job-team">
-                  {entry.team} · {entry.location}
-                </p>
-                <ul className="receipt-bullets">
-                  {entry.highlights.map((point) => (
-                    <li key={point}>{point}</li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </section>
           <section id="projects" className="receipt-section">
-            <ReceiptHeading number="04" title="Selected projects" />
+            <ReceiptHeading number="03" title="Selected projects" />
             <div className="project-introduction">
               <p className="section-intro">
                 From a small “what if” to something real.
@@ -487,6 +460,33 @@ export default function ReceiptPortfolio() {
               <span>IDEAS BROUGHT TO LIFE</span>
               <strong>{String(projects.length).padStart(2, "0")}</strong>
             </div>
+          </section>
+          <section id="leadership" className="receipt-section">
+            <ReceiptHeading number="04" title="Leadership" />
+            <div className="receipt-column-label">
+              <span>ROLE / COMMUNITY</span>
+              <span>PERIOD</span>
+            </div>
+            {leadership.map((entry, i) => (
+              <article className="receipt-job" key={entry.id}>
+                <div className="item-heading">
+                  <h3>
+                    <span className="item-number">0{i + 1}</span>
+                    {entry.organization}
+                  </h3>
+                  <span>{entry.period}</span>
+                </div>
+                <p className="job-role">{entry.role}</p>
+                <p className="job-team">
+                  {entry.team} · {entry.location}
+                </p>
+                <ul className="receipt-bullets">
+                  {entry.highlights.map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
           </section>
           <section id="tech" className="receipt-section">
             <ReceiptHeading number="05" title="The toolkit" />
