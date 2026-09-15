@@ -1,6 +1,7 @@
 import GrainientBackground from "./GrainientBackground";
 import ReceiptDoodle from "./ReceiptDoodle";
 import { useEffect, useState } from "react";
+import { leadership } from "../data/leadership";
 import { experiences } from "../data/experiences";
 import { projects } from "../data/projects";
 import { techStack } from "../data/techStack";
@@ -9,6 +10,7 @@ import "./ReceiptPortfolio.css";
 const sections = [
   { id: "about", label: "The introduction" },
   { id: "experience", label: "Work experience" },
+  { id: "leadership", label: "Leadership" },
   { id: "projects", label: "Selected projects" },
   { id: "tech", label: "The toolkit" },
   { id: "contact", label: "Say hello" },
@@ -366,8 +368,35 @@ export default function ReceiptPortfolio() {
               <strong>03</strong>
             </div>
           </section>
+          <section id="leadership" className="receipt-section">
+            <ReceiptHeading number="03" title="Leadership" />
+            <div className="receipt-column-label">
+              <span>ROLE / COMMUNITY</span>
+              <span>PERIOD</span>
+            </div>
+            {leadership.map((entry, i) => (
+              <article className="receipt-job" key={entry.id}>
+                <div className="item-heading">
+                  <h3>
+                    <span className="item-number">0{i + 1}</span>
+                    {entry.organization}
+                  </h3>
+                  <span>{entry.period}</span>
+                </div>
+                <p className="job-role">{entry.role}</p>
+                <p className="job-team">
+                  {entry.team} · {entry.location}
+                </p>
+                <ul className="receipt-bullets">
+                  {entry.highlights.map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </section>
           <section id="projects" className="receipt-section">
-            <ReceiptHeading number="03" title="Selected projects" />
+            <ReceiptHeading number="04" title="Selected projects" />
             <div className="project-introduction">
               <p className="section-intro">
                 From a small “what if” to something real.
@@ -453,7 +482,7 @@ export default function ReceiptPortfolio() {
             </div>
           </section>
           <section id="tech" className="receipt-section">
-            <ReceiptHeading number="04" title="The toolkit" />
+            <ReceiptHeading number="05" title="The toolkit" />
             <p className="section-intro">A few ingredients I reach for.</p>
             <dl className="toolkit-list">
               {techStack.map((category) => (
@@ -465,7 +494,7 @@ export default function ReceiptPortfolio() {
             </dl>
           </section>
           <section id="contact" className="receipt-section receipt-contact">
-            <ReceiptHeading number="05" title="Say hello" />
+            <ReceiptHeading number="06" title="Say hello" />
             <p className="contact-total">
               <span>NEXT UP</span>
               <strong>
