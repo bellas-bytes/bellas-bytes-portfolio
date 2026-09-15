@@ -13,8 +13,8 @@ const sections = [
   { id: "leadership", label: "Leadership" },
   { id: "projects", label: "Selected projects" },
   { id: "tech", label: "The toolkit" },
-  { id: "contact", label: "Say hello" },
   { id: "beyond", label: "Beyond the keyboard" },
+  { id: "contact", label: "Say hello" },
 ];
 const resume =
   "https://drive.google.com/file/d/17ypWgHG-ujflH0Wkr4K4N0RLhLtYUR4o/view?usp=sharing";
@@ -494,62 +494,8 @@ export default function ReceiptPortfolio() {
               ))}
             </dl>
           </section>
-          <section id="contact" className="receipt-section receipt-contact">
-            <ReceiptHeading number="06" title="Say hello" />
-            <p className="contact-total">
-              <span>NEXT UP</span>
-              <strong>
-                Let’s build
-                <br />
-                something good.
-              </strong>
-            </p>
-            <p>
-              Have an idea, an opportunity, or a café recommendation?
-              <br />
-              I’d love to hear it.
-            </p>
-            <a className="email-link" href="mailto:missisabellan@gmail.com">
-              missisabellan@gmail.com ↗
-            </a>
-            <div className="contact-links">
-              <a
-                href="https://www.linkedin.com/in/nguyenisabella/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                LINKEDIN ↗
-              </a>
-              <a
-                href="https://github.com/bellas-bytes"
-                target="_blank"
-                rel="noreferrer"
-              >
-                GITHUB ↗
-              </a>
-              <a href={resume} target="_blank" rel="noreferrer">
-                RÉSUMÉ ↗
-              </a>
-            </div>
-            <div className="contact-doodle">
-              <ReceiptDoodle kind="puppy" />
-            </div>
-            <div className="thank-you-stamp">
-              THANK YOU
-              <br />
-              <span>FOR SCROLLING</span>
-            </div>
-            <Barcode />
-            <p className="receipt-signoff">
-              NO. 001 — ISABELLA NGUYEN — {new Date().getFullYear()}
-              <br />
-              MADE WITH CARE IN TORONTO.
-              <br />
-              <span>Come back soon. There’s always more in the works.</span>
-            </p>
-          </section>
           <section id="beyond" className="receipt-section">
-            <ReceiptHeading number="07" title="Beyond the keyboard" />
+            <ReceiptHeading number="06" title="Beyond the keyboard" />
             <article className="receipt-essay">
               <p className="essay-label">A PERSONAL NOTE · 3 MIN READ</p>
               <h3>On the other side of the counter</h3>
@@ -631,6 +577,60 @@ export default function ReceiptPortfolio() {
                 </div>
               </details>
             </article>
+          </section>
+          <section id="contact" className="receipt-section receipt-contact">
+            <ReceiptHeading number="07" title="Say hello" />
+            <p className="contact-total">
+              <span>NEXT UP</span>
+              <strong>
+                Let’s build
+                <br />
+                something good.
+              </strong>
+            </p>
+            <p>
+              Have an idea, an opportunity, or a café recommendation?
+              <br />
+              I’d love to hear it.
+            </p>
+            <a className="email-link" href="mailto:missisabellan@gmail.com">
+              missisabellan@gmail.com ↗
+            </a>
+            <div className="contact-links">
+              <a
+                href="https://www.linkedin.com/in/nguyenisabella/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                LINKEDIN ↗
+              </a>
+              <a
+                href="https://github.com/bellas-bytes"
+                target="_blank"
+                rel="noreferrer"
+              >
+                GITHUB ↗
+              </a>
+              <a href={resume} target="_blank" rel="noreferrer">
+                RÉSUMÉ ↗
+              </a>
+            </div>
+            <div className="contact-doodle">
+              <ReceiptDoodle kind="puppy" />
+            </div>
+            <div className="thank-you-stamp">
+              THANK YOU
+              <br />
+              <span>FOR SCROLLING</span>
+            </div>
+            <Barcode />
+            <p className="receipt-signoff">
+              NO. 001 — ISABELLA NGUYEN — {new Date().getFullYear()}
+              <br />
+              MADE WITH CARE IN TORONTO.
+              <br />
+              <span>Come back soon. There’s always more in the works.</span>
+            </p>
           </section>
         </div>
       </main>
