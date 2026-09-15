@@ -319,6 +319,13 @@ export default function ReceiptPortfolio() {
               AI—creating systems and developer tools that help teams move
               faster with less friction.
             </p>
+            <p>
+              Outside of tech, I enjoy bouldering, exploring new restaurants,
+              and getting creative with my outfits. I also love learning to
+              dance and am taking on hip-hop at the moment. Somewhere in
+              between, I’m probably debating my next hair colour—three so far,
+              and counting.
+            </p>
             <dl className="receipt-facts">
               <div>
                 <dt>BASED IN</dt>
