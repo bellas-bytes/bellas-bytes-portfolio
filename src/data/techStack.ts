@@ -101,7 +101,7 @@ export const techStack: TechCategory[] = [
       { name: "Cursor" },
       { name: "Windsurf" },
       { name: "GitHub Copilot" },
-      { name: "OpenAI", Icon: SiOpenai },
+      { name: "Codex", Icon: SiOpenai },
       { name: "MCP" },
     ],
     wide: true,
