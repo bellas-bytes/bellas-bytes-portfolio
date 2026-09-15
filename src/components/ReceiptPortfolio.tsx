@@ -11,10 +11,10 @@ const sections = [
   { id: "about", label: "The introduction" },
   { id: "experience", label: "Work experience" },
   { id: "leadership", label: "Leadership" },
-  { id: "beyond", label: "Beyond the keyboard" },
   { id: "projects", label: "Selected projects" },
   { id: "tech", label: "The toolkit" },
   { id: "contact", label: "Say hello" },
+  { id: "beyond", label: "Beyond the keyboard" },
 ];
 const resume =
   "https://drive.google.com/file/d/17ypWgHG-ujflH0Wkr4K4N0RLhLtYUR4o/view?usp=sharing";
@@ -396,92 +396,8 @@ export default function ReceiptPortfolio() {
               </article>
             ))}
           </section>
-          <section id="beyond" className="receipt-section">
-            <ReceiptHeading number="04" title="Beyond the keyboard" />
-            <article className="receipt-essay">
-              <p className="essay-label">A PERSONAL NOTE · 3 MIN READ</p>
-              <h3>On the other side of the counter</h3>
-              <p>
-                It’s easy for me to get consumed by tech. Between what I’m
-                building, what I’m learning, and the community around it, it can
-                start to feel like my whole world.
-              </p>
-              <p>
-                Working outside of CS gives me a chance to step into someone
-                else’s day.
-              </p>
-              <details className="essay-details">
-                <summary>
-                  <span className="essay-read">Read the story</span>
-                  <span className="essay-hide">Close the story</span>
-                </summary>
-                <div className="essay-body">
-                  <p>
-                    I love the everyday interactions that come with working
-                    behind a counter or serving a table. Remembering a regular’s
-                    order. Helping someone new find something they might like.
-                    Having a conversation that has nothing to do with school,
-                    careers, or the latest thing happening in tech.
-                  </p>
-                  <p>
-                    There’s something satisfying about being a small source of
-                    joy in someone’s day. The interaction might only last a few
-                    minutes, but I like having the chance to make those minutes
-                    good.
-                  </p>
-                  <p>
-                    One customer in particular has stayed with me. She would
-                    come in regularly and talk about her day, often with her
-                    boyfriend. Over time, those conversations became a familiar
-                    part of work.
-                  </p>
-                  <p>
-                    Then one day, she came in and announced that they were
-                    engaged.
-                  </p>
-                  <p>
-                    I still think about that. Someone I knew through these
-                    little everyday visits had a huge piece of news, and I got
-                    to hear it. I had seen small pieces of her life as they
-                    happened, and now I was there for this one, too.
-                  </p>
-                  <p>
-                    After I left the job, I heard that regulars had asked where
-                    I was. It was such a small thing, but it meant a lot to know
-                    that they remembered me and noticed I wasn’t there anymore.
-                    Those familiar conversations had become part of their
-                    routines, just as they had become part of mine.
-                  </p>
-                  <p>
-                    It’s also nice to know that I’m known for something beyond
-                    being a developer. To some people, I’m a familiar face who
-                    remembers their order, has a recommendation ready, or takes
-                    a moment to hear about their day. That part of who I am
-                    matters to me.
-                  </p>
-                  <p>
-                    Those are the stories I love being around for. You don’t
-                    know when someone walks through the door whether it will be
-                    an ordinary visit or a day they’ll remember for years. Most
-                    of the time, it’s an ordinary visit. I enjoy those, too.
-                  </p>
-                  <p>
-                    My work outside of CS gives me a different kind of
-                    fulfillment. I get to meet people whose lives and interests
-                    might have very little overlap with mine, and find something
-                    to connect over anyway. It reminds me how much is happening
-                    beyond the world I spend so much time in.
-                  </p>
-                  <p>
-                    I love building things. I also love remembering someone’s
-                    order and asking how their day has been.
-                  </p>
-                </div>
-              </details>
-            </article>
-          </section>
           <section id="projects" className="receipt-section">
-            <ReceiptHeading number="05" title="Selected projects" />
+            <ReceiptHeading number="04" title="Selected projects" />
             <div className="project-introduction">
               <p className="section-intro">
                 From a small “what if” to something real.
@@ -567,7 +483,7 @@ export default function ReceiptPortfolio() {
             </div>
           </section>
           <section id="tech" className="receipt-section">
-            <ReceiptHeading number="06" title="The toolkit" />
+            <ReceiptHeading number="05" title="The toolkit" />
             <p className="section-intro">A few ingredients I reach for.</p>
             <dl className="toolkit-list">
               {techStack.map((category) => (
@@ -579,7 +495,7 @@ export default function ReceiptPortfolio() {
             </dl>
           </section>
           <section id="contact" className="receipt-section receipt-contact">
-            <ReceiptHeading number="07" title="Say hello" />
+            <ReceiptHeading number="06" title="Say hello" />
             <p className="contact-total">
               <span>NEXT UP</span>
               <strong>
@@ -631,6 +547,90 @@ export default function ReceiptPortfolio() {
               <br />
               <span>Come back soon. There’s always more in the works.</span>
             </p>
+          </section>
+          <section id="beyond" className="receipt-section">
+            <ReceiptHeading number="07" title="Beyond the keyboard" />
+            <article className="receipt-essay">
+              <p className="essay-label">A PERSONAL NOTE · 3 MIN READ</p>
+              <h3>On the other side of the counter</h3>
+              <p>
+                It’s easy for me to get consumed by tech. Between what I’m
+                building, what I’m learning, and the community around it, it can
+                start to feel like my whole world.
+              </p>
+              <p>
+                Working outside of CS gives me a chance to step into someone
+                else’s day.
+              </p>
+              <details className="essay-details">
+                <summary>
+                  <span className="essay-read">Read the story</span>
+                  <span className="essay-hide">Close the story</span>
+                </summary>
+                <div className="essay-body">
+                  <p>
+                    I love the everyday interactions that come with working
+                    behind a counter or serving a table. Remembering a regular’s
+                    order. Helping someone new find something they might like.
+                    Having a conversation that has nothing to do with school,
+                    careers, or the latest thing happening in tech.
+                  </p>
+                  <p>
+                    There’s something satisfying about being a small source of
+                    joy in someone’s day. The interaction might only last a few
+                    minutes, but I like having the chance to make those minutes
+                    good.
+                  </p>
+                  <p>
+                    One customer in particular has stayed with me. She would
+                    come in regularly and talk about her day, often with her
+                    boyfriend. Over time, those conversations became a familiar
+                    part of work.
+                  </p>
+                  <p>
+                    Then one day, she came in and announced that they were
+                    engaged.
+                  </p>
+                  <p>
+                    I still think about that. Someone I knew through these
+                    little everyday visits had a huge piece of news, and I got
+                    to hear it. I had seen small pieces of her life as they
+                    happened, and now I was there for this one, too.
+                  </p>
+                  <p>
+                    After I left the job, I heard that regulars had asked where
+                    I was. It was such a small thing, but it meant a lot to know
+                    that they remembered me and noticed I wasn’t there anymore.
+                    Those familiar conversations had become part of their
+                    routines, just as they had become part of mine.
+                  </p>
+                  <p>
+                    It’s also nice to know that I’m known for something beyond
+                    being a developer. To some people, I’m a familiar face who
+                    remembers their order, has a recommendation ready, or takes
+                    a moment to hear about their day. That part of who I am
+                    matters to me.
+                  </p>
+                  <p>
+                    Those are the stories I love being around for. You don’t
+                    know when someone walks through the door whether it will be
+                    an ordinary visit or a day they’ll remember for years. Most
+                    of the time, it’s an ordinary visit. I enjoy those, too.
+                  </p>
+                  <p>
+                    My work outside of CS gives me a different kind of
+                    fulfillment. I get to meet people whose lives and interests
+                    might have very little overlap with mine, and find something
+                    to connect over anyway. It reminds me how much is happening
+                    beyond the world I spend so much time in.
+                  </p>
+                  <p>
+                    I love building things. I also love remembering someone’s
+                    order and asking how their day has been.
+                  </p>
+                </div>
+              </details>
+            </article>
           </section>
         </div>
       </main>
