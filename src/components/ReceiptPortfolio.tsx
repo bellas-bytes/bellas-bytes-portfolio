@@ -323,8 +323,7 @@ export default function ReceiptPortfolio() {
               Outside of tech, I enjoy bouldering, exploring new restaurants,
               and getting creative with my outfits. I also love learning to
               dance and am taking on hip-hop at the moment. Somewhere in
-              between, I’m probably debating my next hair colour—three so far,
-              and counting.
+              between, my next hair colour is still up for debate.
             </p>
             <dl className="receipt-facts">
               <div>
