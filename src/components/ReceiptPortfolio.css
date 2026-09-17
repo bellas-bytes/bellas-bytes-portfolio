@@ -944,14 +944,6 @@ a {
   }
 }
 
-.thermal-filter-definitions {
-  position: absolute;
-  pointer-events: none;
-  overflow: hidden;
-}
-.thermal-colors .project-print img {
-  filter: url(#thermal-dither);
-}
 .thermal-colors .project-print > a {
   background: transparent;
   border-color: transparent;
@@ -973,7 +965,6 @@ a {
   display: block;
   width: 100%;
   height: auto;
-  filter: url(#thermal-dither);
 }
 #about .receipt-facts {
   clear: both;
@@ -1134,4 +1125,9 @@ a {
 }
 .essay-body {
   padding-top: 20px;
+}
+
+img[data-thermal="fallback"] {
+  filter: grayscale(1);
+  mix-blend-mode: multiply;
 }
