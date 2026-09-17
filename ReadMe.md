@@ -1,1 +1,1 @@
-check out da portfolio at https://isabellanguyen.dev/
+check out da portfolio at https://isabella-nguyen.com/
