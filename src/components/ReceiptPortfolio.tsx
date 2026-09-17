@@ -244,7 +244,7 @@ export default function ReceiptPortfolio() {
                 alt="Isabella wearing glasses and making a peace sign"
                 width="1448"
                 height="1086"
-                loading="lazy"
+                loading="eager"
               />
             </figure>
             <div className="about-title">

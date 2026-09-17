@@ -961,7 +961,6 @@ a {
   margin: 0 0 20px 24px;
 }
 .intro-portrait img {
-  clip-path: inset(1px);
   display: block;
   width: 100%;
   height: auto;
