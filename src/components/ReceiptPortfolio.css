@@ -113,24 +113,76 @@ a {
   font-size: 11px;
   letter-spacing: 0.12em;
 }
+/* A café punch card left on the desk beside the receipt. The three punched
+   holes are real cut-outs (masked), so the desk shows through them. */
 .desk-note {
   position: fixed;
-  left: calc(50% + 440px);
-  top: 290px;
-  color: #344a59;
-  transform: rotate(7deg);
+  left: calc(50% + 432px);
+  top: 262px;
+  transform: rotate(-5deg);
+  filter: drop-shadow(0 2px 2px #30415126) drop-shadow(8px 9px 14px #3041512e);
 }
-.desk-note > span {
-  font:
-    italic 21px/1.3 Georgia,
-    serif;
+.coffee-card {
+  --card-w: 200px;
+  --slot-y: 128px;
+  --hole: 7px;
+  position: relative;
+  box-sizing: border-box;
+  width: var(--card-w);
+  height: 176px;
+  padding: 20px 22px 0;
+  background: #f1ebdc;
+  border-radius: 3px;
+  color: var(--ink);
+  -webkit-mask:
+    radial-gradient(circle at 42px var(--slot-y), #0000 var(--hole), #000 calc(var(--hole) + 0.6px)),
+    radial-gradient(circle at 74px var(--slot-y), #0000 var(--hole), #000 calc(var(--hole) + 0.6px)),
+    radial-gradient(circle at 106px var(--slot-y), #0000 var(--hole), #000 calc(var(--hole) + 0.6px));
+  -webkit-mask-composite: source-in;
+  mask:
+    radial-gradient(circle at 42px var(--slot-y), #0000 var(--hole), #000 calc(var(--hole) + 0.6px)),
+    radial-gradient(circle at 74px var(--slot-y), #0000 var(--hole), #000 calc(var(--hole) + 0.6px)),
+    radial-gradient(circle at 106px var(--slot-y), #0000 var(--hole), #000 calc(var(--hole) + 0.6px));
+  mask-composite: intersect;
 }
-.desk-note svg {
-  width: 90px;
-  height: 100px;
-  margin-left: -35px;
-  stroke: currentColor;
-  stroke-width: 1.4;
+.coffee-card p {
+  margin: 0;
+}
+.coffee-card-brand {
+  font-family: "Chatime", Georgia, serif;
+  font-size: 27px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+.coffee-card-line {
+  margin-top: 12px !important;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted-ink);
+}
+.coffee-card-slots {
+  position: absolute;
+  left: 34px;
+  top: calc(var(--slot-y) - 8px);
+  display: flex;
+  gap: 16px;
+}
+.coffee-card-slots span {
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border-radius: 50%;
+}
+.coffee-card-slots span:not(.is-punched) {
+  border: 1px dashed #4e514799;
+}
+.coffee-card-note {
+  position: absolute;
+  left: 22px;
+  bottom: 14px;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: #4e5147b3;
 }
 .receipt-paper {
   position: relative;
@@ -1046,7 +1098,6 @@ a {
 }
 
 /* Personal notes use real handwriting, while receipt copy stays monospaced. */
-.desk-note > span,
 .receipt-section .handwritten,
 .scroll-invitation,
 .thank-you-stamp,
@@ -1054,10 +1105,6 @@ a {
   font-family: "Caveat", "Segoe Print", cursive;
   font-style: normal;
   letter-spacing: 0;
-}
-.desk-note > span {
-  font-size: 28px;
-  line-height: 1.15;
 }
 .receipt-section .handwritten {
   font-size: 24px;

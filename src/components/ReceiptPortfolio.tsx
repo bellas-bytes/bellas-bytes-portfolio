@@ -195,14 +195,22 @@ export default function ReceiptPortfolio() {
         <span className="nav-footnote">KEEP FOR YOUR RECORDS.</span>
       </nav>
       <aside className="desk-note" aria-hidden="true">
-        <span>
-          made of curiosity,
-          <br />
-          code & coffee.
-        </span>
-        <svg viewBox="0 0 100 100" fill="none">
-          <path d="M80 8C95 55 67 75 17 68m0 0 19-13M17 68l22 9" />
-        </svg>
+        <div className="coffee-card">
+          <p className="coffee-card-brand">coffee card</p>
+          <p className="coffee-card-line">
+            made of curiosity,
+            <br />
+            code & coffee.
+          </p>
+          <div className="coffee-card-slots">
+            <span className="is-punched" />
+            <span className="is-punched" />
+            <span className="is-punched" />
+            <span />
+            <span />
+          </div>
+          <p className="coffee-card-note">come back for a refill.</p>
+        </div>
       </aside>
       <main id="top" className="receipt-paper">
         <div className="receipt-inner">
