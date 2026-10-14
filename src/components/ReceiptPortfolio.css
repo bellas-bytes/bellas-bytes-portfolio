@@ -9,10 +9,10 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 32px;
-  scroll-padding-bottom: 160px;
+  scroll-padding-bottom: 130px;
 }
 body {
-  font-family: "Courier New", Courier, monospace;
+  font-family: "IBM Plex Mono", "Courier New", monospace;
   color: var(--ink);
 }
 ::selection {
@@ -37,7 +37,7 @@ a {
   position: relative;
   isolation: isolate;
   min-height: 100vh;
-  padding: 106px 24px 205px;
+  padding: 106px 24px 116px;
   background:
     radial-gradient(ellipse at 50% 25%, #d4dde180, transparent 65%), var(--desk);
 }
@@ -95,7 +95,7 @@ a {
   font-size: 12px;
   letter-spacing: 0.14em;
   margin-bottom: 22px;
-  opacity: 0.8;
+  color: #22333f;
 }
 .receipt-nav a {
   display: flex;
@@ -104,33 +104,79 @@ a {
   text-decoration: none;
 }
 .receipt-nav a span {
-  opacity: 0.6;
+  color: #2b3e4b;
   font-size: 12px;
 }
-.nav-footnote {
-  display: block;
-  margin-top: 55px;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-}
+/* A café punch card left on the desk beside the receipt. The three punched
+   holes are real cut-outs (masked), so the desk shows through them. */
 .desk-note {
-  position: fixed;
-  left: calc(50% + 440px);
-  top: 290px;
-  color: #344a59;
-  transform: rotate(7deg);
+  position: absolute;
+  left: calc(50% + 432px);
+  top: 262px;
+  transform: rotate(-5deg);
+  filter: drop-shadow(0 2px 2px #30415126) drop-shadow(8px 9px 14px #3041512e);
 }
-.desk-note > span {
-  font:
-    italic 21px/1.3 Georgia,
-    serif;
+.coffee-card {
+  --card-w: 200px;
+  --slot-y: 128px;
+  --hole: 7px;
+  position: relative;
+  box-sizing: border-box;
+  width: var(--card-w);
+  height: 176px;
+  padding: 20px 22px 0;
+  background: #f1ebdc;
+  border-radius: 3px;
+  color: var(--ink);
+  -webkit-mask:
+    radial-gradient(circle at 42px var(--slot-y), #0000 var(--hole), #000 calc(var(--hole) + 0.6px)),
+    radial-gradient(circle at 74px var(--slot-y), #0000 var(--hole), #000 calc(var(--hole) + 0.6px)),
+    radial-gradient(circle at 106px var(--slot-y), #0000 var(--hole), #000 calc(var(--hole) + 0.6px));
+  -webkit-mask-composite: source-in;
+  mask:
+    radial-gradient(circle at 42px var(--slot-y), #0000 var(--hole), #000 calc(var(--hole) + 0.6px)),
+    radial-gradient(circle at 74px var(--slot-y), #0000 var(--hole), #000 calc(var(--hole) + 0.6px)),
+    radial-gradient(circle at 106px var(--slot-y), #0000 var(--hole), #000 calc(var(--hole) + 0.6px));
+  mask-composite: intersect;
 }
-.desk-note svg {
-  width: 90px;
-  height: 100px;
-  margin-left: -35px;
-  stroke: currentColor;
-  stroke-width: 1.4;
+.coffee-card p {
+  margin: 0;
+}
+.coffee-card-brand {
+  font-family: "Chatime", Georgia, serif;
+  font-size: 27px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+.coffee-card-line {
+  margin-top: 12px !important;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted-ink);
+}
+.coffee-card-slots {
+  position: absolute;
+  left: 34px;
+  top: calc(var(--slot-y) - 8px);
+  display: flex;
+  gap: 16px;
+}
+.coffee-card-slots span {
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border-radius: 50%;
+}
+.coffee-card-slots span:not(.is-punched) {
+  border: 1px dashed #4e514799;
+}
+.coffee-card-note {
+  position: absolute;
+  left: 22px;
+  bottom: 14px;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--muted-ink);
 }
 .receipt-paper {
   position: relative;
@@ -193,18 +239,13 @@ a {
   font-size: 11px;
   letter-spacing: 0.08em;
 }
-.receipt-emblem {
-  font-size: 47px;
-  line-height: 1;
-  margin: 30px 0 17px;
-}
 .receipt-masthead h1 {
   position: relative;
   font-family: "Chatime", Georgia, serif;
   font-size: 88px;
   line-height: 0.83;
   letter-spacing: -0.035em;
-  margin: 0 auto 26px;
+  margin: 56px auto 30px;
   width: fit-content;
   transform: rotate(-3deg);
 }
@@ -235,25 +276,12 @@ a {
   border-top: 1px dashed #79786b;
   border-bottom: 1px dashed #79786b;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   font-size: 12px;
+  letter-spacing: 0.08em;
 }
 .receipt-welcome {
   margin: 20px 0 18px;
-}
-.scroll-invitation {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  text-decoration: none;
-  color: var(--red);
-  padding: 10px 0;
-}
-.scroll-invitation span {
-  font-size: 21px;
 }
 .receipt-section {
   padding-top: 39px;
@@ -289,7 +317,7 @@ a {
 }
 .about-title {
   font:
-    bold 24px/1.2 "Courier New",
+    bold 24px/1.2 "IBM Plex Mono",
     monospace;
   letter-spacing: -1.3px;
 }
@@ -465,13 +493,14 @@ a {
 }
 .contact-total strong {
   font:
-    bold 33px/1.1 "Courier New",
+    bold 33px/1.1 "IBM Plex Mono",
     monospace;
   letter-spacing: -1.8px;
 }
 .email-link {
   display: inline-block;
-  font-size: 16px;
+  font-size: 17px;
+  font-weight: bold;
   text-underline-offset: 5px;
   padding: 10px 0;
 }
@@ -486,23 +515,35 @@ a {
   padding: 10px 0;
   text-underline-offset: 4px;
 }
+/* A rubber stamp pressed onto the receipt: bold type, a double border and
+   worn ink (a tiny tiling mask knocks out specks of the colour). */
 .thank-you-stamp {
   width: fit-content;
-  color: var(--red);
-  border: 2px solid var(--red);
-  padding: 9px 19px;
-  font-size: 24px;
-  font-weight: bold;
-  line-height: 1;
-  margin: 31px auto;
-  transform: rotate(-7deg);
+  margin: 34px auto 30px;
+  transform: rotate(-6deg);
+}
+.stamp-ink {
+  display: block;
+  padding: 10px 20px 11px;
+  border: 2.5px solid var(--red);
+  border-radius: 4px;
   box-shadow:
     inset 0 0 0 3px var(--paper),
-    inset 0 0 0 4px var(--red);
+    inset 0 0 0 4.5px var(--red);
+  color: var(--red);
+  font-size: 26px;
+  font-weight: bold;
+  line-height: 1.05;
+  letter-spacing: 0.06em;
+  text-align: center;
+  opacity: 0.88;
+  mix-blend-mode: multiply;
+  -webkit-mask: url("./stamp-ink.png") 0 0 / 180px repeat;
+  mask: url("./stamp-ink.png") 0 0 / 180px repeat;
 }
-.thank-you-stamp span {
+.stamp-ink span {
   font-size: 12px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.32em;
 }
 .receipt-barcode {
   width: 225px;
@@ -529,11 +570,6 @@ a {
   line-height: 1.9;
   margin: 12px 0 8px;
 }
-.receipt-signoff span {
-  display: block;
-  margin-top: 13px;
-  font-size: 12px;
-}
 .printer {
   position: fixed;
   bottom: 0;
@@ -541,8 +577,9 @@ a {
   transform: translateX(-50%);
   width: min(880px, calc(100% - 24px));
   z-index: 10;
-  height: 139px;
+  height: 109px;
   padding-top: 19px;
+  transition: height 220ms ease-out;
   background: linear-gradient(#e5e3da, #cac9c0);
   border-radius: 22px 22px 0 0;
   box-shadow:
@@ -575,6 +612,9 @@ a {
 .printer-body {
   height: 89px;
   padding: 20px 34px 11px;
+  transition:
+    height 220ms ease-out,
+    padding 220ms ease-out;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -593,16 +633,18 @@ a {
   font-size: 39px;
   letter-spacing: -0.14em;
   line-height: 1;
+  transition: font-size 220ms ease-out;
 }
-.printer-brand > span {
-  font-size: 8px;
-  letter-spacing: 0.09em;
+.printer.is-compact {
+  height: 70px;
 }
-.printer-brand small {
-  display: block;
-  font-size: 7px;
-  margin-top: 7px;
-  color: #71756b;
+.is-compact .printer-body {
+  height: 51px;
+  padding-top: 8px;
+  padding-bottom: 6px;
+}
+.is-compact .printer-brand > strong {
+  font-size: 26px;
 }
 .printer-controls {
   display: flex;
@@ -656,26 +698,6 @@ a {
   transform: translateY(2px);
   box-shadow: 0 1px 0 #aaada2;
 }
-.printer-base {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 30px;
-  padding: 0 35px;
-  color: #686d61;
-  font-size: 7px;
-  letter-spacing: 0.13em;
-}
-.printer-base > span:first-child,
-.printer-base > span:last-child {
-  width: 34px;
-  height: 6px;
-  background: repeating-linear-gradient(
-    90deg,
-    #8f9386 0 2px,
-    transparent 2px 5px
-  );
-}
 .skip-link {
   position: fixed;
   top: -80px;
@@ -706,10 +728,10 @@ a {
 }
 @media (max-width: 640px) {
   html {
-    scroll-padding-bottom: 136px;
+    scroll-padding-bottom: 110px;
   }
   .receipt-scene {
-    padding: 94px 14px 168px;
+    padding: 94px 14px 104px;
   }
   .desk-header {
     top: 22px;
@@ -730,9 +752,6 @@ a {
   }
   .receipt-order {
     font-size: 11px;
-  }
-  .receipt-emblem {
-    margin-top: 25px;
   }
   .receipt-heading {
     font-size: 14px;
@@ -758,7 +777,7 @@ a {
     font-size: 14px;
   }
   .printer {
-    height: 116px;
+    height: 91px;
     width: calc(100% - 12px);
     border-radius: 15px 15px 0 0;
   }
@@ -776,13 +795,16 @@ a {
   .printer-brand > strong {
     font-size: 29px;
   }
-  .printer-brand > span {
-    font-size: 6px;
-    max-width: 77px;
-    line-height: 1.5;
+  .printer.is-compact {
+    height: 64px;
   }
-  .printer-brand small {
-    display: none;
+  .is-compact .printer-body {
+    height: 45px;
+    padding-top: 7px;
+    padding-bottom: 5px;
+  }
+  .is-compact .printer-brand > strong {
+    font-size: 22px;
   }
   .printer-controls {
     gap: 9px;
@@ -796,12 +818,6 @@ a {
     font-size: 8px;
     padding: 10px;
   }
-  .printer-base {
-    height: 25px;
-    padding: 0 20px;
-    font-size: 6px;
-    letter-spacing: 0.04em;
-  }
   .contact-total strong {
     font-size: 29px;
   }
@@ -809,8 +825,7 @@ a {
   .receipt-order {
     gap: 12px;
   }
-  .receipt-topline > span:last-child,
-  .receipt-order > span:last-child {
+  .receipt-topline > span:last-child {
     text-align: right;
   }
   .contact-links {
@@ -822,9 +837,6 @@ a {
   .receipt-inner {
     padding-left: 19px;
     padding-right: 19px;
-  }
-  .printer-brand > span {
-    display: none;
   }
   .receipt-name {
     font-size: 12px;
@@ -842,7 +854,7 @@ a {
   font-weight: bold;
 }
 .receipt-nav a[aria-current="location"] > span {
-  opacity: 1;
+  color: inherit;
 }
 .project-introduction {
   display: flex;
@@ -871,6 +883,9 @@ a {
   display: block;
   width: 100%;
   height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: top;
 }
 .project-print figcaption {
   display: flex;
@@ -923,8 +938,7 @@ a {
   .receipt-nav,
   .desk-note,
   .printer,
-  .skip-link,
-  .scroll-invitation {
+  .skip-link {
     display: none;
   }
   .receipt-scene {
@@ -976,53 +990,20 @@ a {
   }
 }
 
-/* Doodles have reserved space and never sit over text or interactive elements. */
-.receipt-doodle {
-  display: block;
-  flex-shrink: 0;
-  color: var(--ink);
-  pointer-events: none;
-}
-.receipt-emblem .doodle-stars {
-  width: 150px;
-  height: 63px;
-  margin: 0 auto;
-}
-.intro-doodle-note {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+/* The footnote to the asterisk in "Hi, I'm Isabella*". */
+.intro-footnote {
   clear: both;
+  padding-top: 22px;
 }
-.intro-doodle-note .handwritten {
-  flex: 1;
+.intro-footnote p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted-ink);
 }
-.doodle-flowers {
-  width: 100px;
-  height: 110px;
-}
-.contact-doodle {
-  display: flex;
-  justify-content: center;
-  margin: 24px 0 -12px;
-}
-.doodle-puppy {
-  width: 120px;
-  height: 112px;
-}
-@media (max-width: 640px) {
-  .receipt-emblem .doodle-stars {
-    width: 125px;
-    height: 52px;
-  }
-  .intro-doodle-note {
-    gap: 12px;
-  }
-  .doodle-flowers {
-    width: 74px;
-    height: 88px;
-  }
+.footnote-mark {
+  color: var(--red);
+  margin-right: 6px;
 }
 
 .project-meta {
@@ -1042,52 +1023,6 @@ a {
 @media (max-width: 640px) {
   .project-meta {
     justify-content: flex-start;
-  }
-}
-
-/* Personal notes use real handwriting, while receipt copy stays monospaced. */
-.desk-note > span,
-.receipt-section .handwritten,
-.scroll-invitation,
-.thank-you-stamp,
-.email-link {
-  font-family: "Caveat", "Segoe Print", cursive;
-  font-style: normal;
-  letter-spacing: 0;
-}
-.desk-note > span {
-  font-size: 28px;
-  line-height: 1.15;
-}
-.receipt-section .handwritten {
-  font-size: 24px;
-  line-height: 1.3;
-}
-.scroll-invitation {
-  font-size: 19px;
-  font-weight: 600;
-}
-.thank-you-stamp {
-  font-size: 32px;
-  font-weight: 600;
-}
-.thank-you-stamp span {
-  font-size: 16px;
-  letter-spacing: 0.06em;
-}
-.email-link {
-  font-size: 23px;
-  font-weight: 600;
-}
-@media (max-width: 640px) {
-  .receipt-section .handwritten {
-    font-size: 22px;
-  }
-  .scroll-invitation {
-    font-size: 17px;
-  }
-  .email-link {
-    font-size: 21px;
   }
 }
 
@@ -1126,7 +1061,3 @@ a {
   padding-top: 20px;
 }
 
-img[data-thermal="fallback"] {
-  filter: grayscale(1);
-  mix-blend-mode: multiply;
-}

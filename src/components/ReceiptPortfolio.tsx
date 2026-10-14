@@ -1,6 +1,5 @@
 import ThermalImage from "./ThermalImage";
 import GrainientBackground from "./GrainientBackground";
-import ReceiptDoodle from "./ReceiptDoodle";
 import { useEffect, useState } from "react";
 import { leadership } from "../data/leadership";
 import { experiences } from "../data/experiences";
@@ -37,11 +36,14 @@ function ReceiptHeading({ number, title }: { number: string; title: string }) {
 function Printer() {
   const [progress, setProgress] = useState(0);
   const [feeding, setFeeding] = useState(false);
+  // Full-size printer on arrival; it tucks down once you start reading.
+  const [compact, setCompact] = useState(false);
   useEffect(() => {
     let frame = 0;
     let timer: ReturnType<typeof setTimeout>;
     const measure = () => {
       const max = document.documentElement.scrollHeight - window.innerHeight;
+      setCompact(window.scrollY > 120);
       setProgress(
         max > 0
           ? Math.min(100, Math.max(0, Math.round((window.scrollY / max) * 100)))
@@ -87,16 +89,13 @@ function Printer() {
 
   return (
     <footer
-      className={`printer ${feeding ? "is-feeding" : ""}`}
+      className={`printer${feeding ? " is-feeding" : ""}${compact ? " is-compact" : ""}`}
       aria-label="Receipt printer"
     >
       <div className="printer-slot" aria-hidden="true" />
       <div className="printer-body">
         <div className="printer-brand">
           <strong>bb.</strong>
-          <span>
-            THE LITTLE IDEA PRINTER<small>MODEL NO. 001 / TORONTO</small>
-          </span>
         </div>
         <div className="printer-controls">
           <div className="printer-display">
@@ -123,10 +122,6 @@ function Printer() {
             {progress === 100 ? "REWIND ↑" : "FEED ↓"}
           </button>
         </div>
-      </div>
-      <div className="printer-base" aria-hidden="true">
-        <span /> <span>GOOD THINGS TAKE A LITTLE PAPER.</span>
-        <span />
       </div>
     </footer>
   );
@@ -171,11 +166,6 @@ export default function ReceiptPortfolio() {
         <a href="#top" aria-label="Bella's Bytes home">
           bb<span>✳</span>
         </a>
-        <span>
-          A SMALL RECORD OF
-          <br />
-          THINGS I'VE BUILT.
-        </span>
         <a href={resume} target="_blank" rel="noreferrer">
           RÉSUMÉ ↗
         </a>
@@ -192,17 +182,24 @@ export default function ReceiptPortfolio() {
             {s.label}
           </a>
         ))}
-        <span className="nav-footnote">KEEP FOR YOUR RECORDS.</span>
       </nav>
       <aside className="desk-note" aria-hidden="true">
-        <span>
-          made of curiosity,
-          <br />
-          code & coffee.
-        </span>
-        <svg viewBox="0 0 100 100" fill="none">
-          <path d="M80 8C95 55 67 75 17 68m0 0 19-13M17 68l22 9" />
-        </svg>
+        <div className="coffee-card">
+          <p className="coffee-card-brand">coffee card</p>
+          <p className="coffee-card-line">
+            made of curiosity,
+            <br />
+            code & coffee.
+          </p>
+          <div className="coffee-card-slots">
+            <span className="is-punched" />
+            <span className="is-punched" />
+            <span className="is-punched" />
+            <span />
+            <span />
+          </div>
+          <p className="coffee-card-note">come back for a refill.</p>
+        </div>
       </aside>
       <main id="top" className="receipt-paper">
         <div className="receipt-inner">
@@ -210,9 +207,6 @@ export default function ReceiptPortfolio() {
             <div className="receipt-topline">
               <span>PERSONAL PORTFOLIO</span>
               <span>EST. IN TORONTO</span>
-            </div>
-            <div className="receipt-emblem" aria-hidden="true">
-              <ReceiptDoodle kind="stars" />
             </div>
             <h1>
               bella’s
@@ -224,10 +218,9 @@ export default function ReceiptPortfolio() {
             <p>
               Developer. Curious human.
               <br />
-              Building the behind the scenes.
+              I build the infrastructure and tools that help teams ship faster.
             </p>
             <div className="receipt-order">
-              <span>ORDER #0001</span>
               <span>DEVOPS / INFRA / AI</span>
             </div>
             <p className="receipt-welcome">
@@ -242,8 +235,8 @@ export default function ReceiptPortfolio() {
               <ThermalImage
                 src={`${process.env.PUBLIC_URL}/images/portraits/isabella.png`}
                 alt="Isabella wearing glasses and making a peace sign"
-                width="1448"
-                height="1086"
+                width="960"
+                height="720"
                 loading="eager"
               />
             </figure>
@@ -279,11 +272,13 @@ export default function ReceiptPortfolio() {
                 <dd>December 2026</dd>
               </div>
             </dl>
-            <div className="intro-doodle-note">
-              <p className="handwritten">
-                * probably thinking about my next coffee
+            <div className="intro-footnote">
+              <p>
+                <span className="footnote-mark" aria-hidden="true">
+                  *
+                </span>
+                probably thinking about my next coffee
               </p>
-              <ReceiptDoodle kind="flowers" />
             </div>
           </section>
           <section id="experience" className="receipt-section">
@@ -356,8 +351,8 @@ export default function ReceiptPortfolio() {
                       <ThermalImage
                         src={`${process.env.PUBLIC_URL}/images/projects/${project.preview.image}`}
                         alt={project.preview.alt}
-                        width={project.id === "proj-1" ? 806 : 1280}
-                        height={project.id === "proj-1" ? 454 : 850}
+                        width={project.id === "proj-1" ? 806 : 960}
+                        height={project.id === "proj-1" ? 454 : 638}
                         loading="lazy"
                       />
                     </a>
@@ -443,16 +438,11 @@ export default function ReceiptPortfolio() {
           <section id="beyond" className="receipt-section">
             <ReceiptHeading number="06" title="Beyond the keyboard" />
             <article className="receipt-essay">
-              <p className="essay-label">A PERSONAL NOTE · 3 MIN READ</p>
+              <p className="essay-label">A PERSONAL NOTE · 2 MIN READ</p>
               <h3>On the other side of the counter</h3>
               <p>
-                It’s easy for me to get consumed by tech. Between what I’m
-                building, what I’m learning, and the community around it, it can
-                start to feel like my whole world.
-              </p>
-              <p>
-                Working outside of CS gives me a chance to step into someone
-                else’s day.
+                One of my regulars came in one day and announced that she was
+                engaged. I still think about that.
               </p>
               <details className="essay-details">
                 <summary>
@@ -461,60 +451,48 @@ export default function ReceiptPortfolio() {
                 </summary>
                 <div className="essay-body">
                   <p>
-                    I love the everyday interactions that come with working
-                    behind a counter or serving a table. Remembering a regular’s
+                    It’s easy for me to get consumed by tech. Between what I’m
+                    building, what I’m learning, and the community around it, it
+                    can start to feel like my whole world. Working behind a
+                    counter gives me a chance to step into someone else’s day.
+                  </p>
+                  <p>
+                    I love the everyday parts of it. Remembering a regular’s
                     order. Helping someone new find something they might like.
                     Having a conversation that has nothing to do with school,
-                    careers, or the latest thing happening in tech.
+                    careers, or the latest thing in tech.
                   </p>
                   <p>
-                    There’s something satisfying about being a small source of
-                    joy in someone’s day. The interaction might only last a few
-                    minutes, but I like having the chance to make those minutes
-                    good.
+                    She was one of those regulars. She would come in and talk
+                    about her day, often with her boyfriend, and over time those
+                    conversations became a familiar part of work. Then one day,
+                    she came in and announced that they were engaged.
                   </p>
                   <p>
-                    One customer in particular has stayed with me. She would
-                    come in regularly and talk about her day, often with her
-                    boyfriend. Over time, those conversations became a familiar
-                    part of work.
+                    Someone I knew through these little everyday visits had a
+                    huge piece of news, and I got to hear it. I had seen small
+                    pieces of her life as they happened, and now I was there
+                    for this one, too.
                   </p>
                   <p>
-                    Then one day, she came in and announced that they were
-                    engaged.
-                  </p>
-                  <p>
-                    I still think about that. Someone I knew through these
-                    little everyday visits had a huge piece of news, and I got
-                    to hear it. I had seen small pieces of her life as they
-                    happened, and now I was there for this one, too.
+                    Those are the stories I love being around for. You never
+                    know whether the person walking through the door is on an
+                    ordinary visit or having a day they’ll remember for years.
+                    Most of the time, it’s an ordinary visit. I enjoy those,
+                    too.
                   </p>
                   <p>
                     After I left the job, I heard that regulars had asked where
-                    I was. It was such a small thing, but it meant a lot to know
-                    that they remembered me and noticed I wasn’t there anymore.
-                    Those familiar conversations had become part of their
-                    routines, just as they had become part of mine.
+                    I was. It was such a small thing, but it meant a lot. Those
+                    conversations had become part of their routines, just as
+                    they had become part of mine.
                   </p>
                   <p>
-                    It’s also nice to know that I’m known for something beyond
-                    being a developer. To some people, I’m a familiar face who
-                    remembers their order, has a recommendation ready, or takes
-                    a moment to hear about their day. That part of who I am
-                    matters to me.
-                  </p>
-                  <p>
-                    Those are the stories I love being around for. You don’t
-                    know when someone walks through the door whether it will be
-                    an ordinary visit or a day they’ll remember for years. Most
-                    of the time, it’s an ordinary visit. I enjoy those, too.
-                  </p>
-                  <p>
-                    My work outside of CS gives me a different kind of
-                    fulfillment. I get to meet people whose lives and interests
-                    might have very little overlap with mine, and find something
-                    to connect over anyway. It reminds me how much is happening
-                    beyond the world I spend so much time in.
+                    It’s nice to be known for something beyond being a
+                    developer. To some people, I’m a familiar face who remembers
+                    their order, has a recommendation ready, or takes a moment
+                    to hear about their day. That part of who I am matters to
+                    me.
                   </p>
                   <p>
                     I love building things. I also love remembering someone’s
@@ -561,21 +539,18 @@ export default function ReceiptPortfolio() {
                 RÉSUMÉ ↗
               </a>
             </div>
-            <div className="contact-doodle">
-              <ReceiptDoodle kind="puppy" />
-            </div>
             <div className="thank-you-stamp">
-              THANK YOU
-              <br />
-              <span>FOR SCROLLING</span>
+              <span className="stamp-ink">
+                THANK YOU
+                <br />
+                <span>FOR SCROLLING</span>
+              </span>
             </div>
             <Barcode />
             <p className="receipt-signoff">
-              NO. 001 — ISABELLA NGUYEN — {new Date().getFullYear()}
+              ISABELLA NGUYEN — {new Date().getFullYear()}
               <br />
               MADE WITH CARE IN TORONTO.
-              <br />
-              <span>Come back soon. There’s always more in the works.</span>
             </p>
           </section>
         </div>
