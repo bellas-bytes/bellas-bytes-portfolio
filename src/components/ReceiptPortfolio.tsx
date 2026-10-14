@@ -1,6 +1,6 @@
 import ThermalImage from "./ThermalImage";
 import GrainientBackground from "./GrainientBackground";
-import ReceiptDoodle from "./ReceiptDoodle";
+import CoffeeRing from "./CoffeeRing";
 import { useEffect, useState } from "react";
 import { leadership } from "../data/leadership";
 import { experiences } from "../data/experiences";
@@ -219,9 +219,6 @@ export default function ReceiptPortfolio() {
               <span>PERSONAL PORTFOLIO</span>
               <span>EST. IN TORONTO</span>
             </div>
-            <div className="receipt-emblem" aria-hidden="true">
-              <ReceiptDoodle kind="stars" />
-            </div>
             <h1>
               bella’s
               <br />
@@ -287,11 +284,14 @@ export default function ReceiptPortfolio() {
                 <dd>December 2026</dd>
               </div>
             </dl>
-            <div className="intro-doodle-note">
-              <p className="handwritten">
-                * probably thinking about my next coffee
+            <div className="intro-footnote">
+              <p>
+                <span className="footnote-mark" aria-hidden="true">
+                  *
+                </span>
+                probably thinking about my next coffee
               </p>
-              <ReceiptDoodle kind="flowers" />
+              <CoffeeRing />
             </div>
           </section>
           <section id="experience" className="receipt-section">
@@ -569,13 +569,12 @@ export default function ReceiptPortfolio() {
                 RÉSUMÉ ↗
               </a>
             </div>
-            <div className="contact-doodle">
-              <ReceiptDoodle kind="puppy" />
-            </div>
             <div className="thank-you-stamp">
-              THANK YOU
-              <br />
-              <span>FOR SCROLLING</span>
+              <span className="stamp-ink">
+                THANK YOU
+                <br />
+                <span>FOR SCROLLING</span>
+              </span>
             </div>
             <Barcode />
             <p className="receipt-signoff">
