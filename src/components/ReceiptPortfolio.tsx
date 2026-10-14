@@ -36,11 +36,14 @@ function ReceiptHeading({ number, title }: { number: string; title: string }) {
 function Printer() {
   const [progress, setProgress] = useState(0);
   const [feeding, setFeeding] = useState(false);
+  // Full-size printer on arrival; it tucks down once you start reading.
+  const [compact, setCompact] = useState(false);
   useEffect(() => {
     let frame = 0;
     let timer: ReturnType<typeof setTimeout>;
     const measure = () => {
       const max = document.documentElement.scrollHeight - window.innerHeight;
+      setCompact(window.scrollY > 120);
       setProgress(
         max > 0
           ? Math.min(100, Math.max(0, Math.round((window.scrollY / max) * 100)))
@@ -86,16 +89,13 @@ function Printer() {
 
   return (
     <footer
-      className={`printer ${feeding ? "is-feeding" : ""}`}
+      className={`printer${feeding ? " is-feeding" : ""}${compact ? " is-compact" : ""}`}
       aria-label="Receipt printer"
     >
       <div className="printer-slot" aria-hidden="true" />
       <div className="printer-body">
         <div className="printer-brand">
           <strong>bb.</strong>
-          <span>
-            THE LITTLE IDEA PRINTER<small>MODEL NO. 001 / TORONTO</small>
-          </span>
         </div>
         <div className="printer-controls">
           <div className="printer-display">
@@ -122,10 +122,6 @@ function Printer() {
             {progress === 100 ? "REWIND ↑" : "FEED ↓"}
           </button>
         </div>
-      </div>
-      <div className="printer-base" aria-hidden="true">
-        <span /> <span>GOOD THINGS TAKE A LITTLE PAPER.</span>
-        <span />
       </div>
     </footer>
   );
@@ -170,11 +166,6 @@ export default function ReceiptPortfolio() {
         <a href="#top" aria-label="Bella's Bytes home">
           bb<span>✳</span>
         </a>
-        <span>
-          A SMALL RECORD OF
-          <br />
-          THINGS I'VE BUILT.
-        </span>
         <a href={resume} target="_blank" rel="noreferrer">
           RÉSUMÉ ↗
         </a>
@@ -191,7 +182,6 @@ export default function ReceiptPortfolio() {
             {s.label}
           </a>
         ))}
-        <span className="nav-footnote">KEEP FOR YOUR RECORDS.</span>
       </nav>
       <aside className="desk-note" aria-hidden="true">
         <div className="coffee-card">
@@ -231,7 +221,6 @@ export default function ReceiptPortfolio() {
               I build the infrastructure and tools that help teams ship faster.
             </p>
             <div className="receipt-order">
-              <span>ORDER #0001</span>
               <span>DEVOPS / INFRA / AI</span>
             </div>
             <p className="receipt-welcome">
@@ -576,11 +565,9 @@ export default function ReceiptPortfolio() {
             </div>
             <Barcode />
             <p className="receipt-signoff">
-              NO. 001 — ISABELLA NGUYEN — {new Date().getFullYear()}
+              ISABELLA NGUYEN — {new Date().getFullYear()}
               <br />
               MADE WITH CARE IN TORONTO.
-              <br />
-              <span>Come back soon. There’s always more in the works.</span>
             </p>
           </section>
         </div>

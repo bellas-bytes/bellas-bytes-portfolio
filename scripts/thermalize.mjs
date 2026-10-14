@@ -8,6 +8,10 @@
 // Usage (sharp is only needed for this script, so it isn't a project dependency):
 //   npm i --no-save sharp
 //   node scripts/thermalize.mjs public/images/portraits/isabella.png
+//   node scripts/thermalize.mjs --lift=0.55 public/images/projects/kinora.png
+//
+// --lift brightens before dithering (1 = unchanged, lower = lighter). Use it for
+// dark screenshots, which otherwise print as a near-solid block of ink.
 //
 // Writes <name>.thermal.png next to each input. Re-run it whenever you swap a photo.
 
@@ -19,7 +23,7 @@ const thresholds = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5];
 const INK = [36, 39, 32];
 const MAX_WIDTH = 960;
 
-async function thermalize(input) {
+async function thermalize(input, lift = 1) {
   const meta = await sharp(input).metadata();
   const width = Math.min(meta.width, MAX_WIDTH);
   const { data, info } = await sharp(input)
@@ -35,7 +39,7 @@ async function thermalize(input) {
       const alpha = data[i + 3] / 255;
       const gray =
         (0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2]) / 255;
-      const brightness = Math.pow(gray * alpha + 1 - alpha, 1.25);
+      const brightness = Math.pow(gray * alpha + 1 - alpha, 1.25 * lift);
       const threshold = (thresholds[(y % 4) * 4 + (x % 4)] + 0.5) / 16;
       out[i] = INK[0];
       out[i + 1] = INK[1];
@@ -54,9 +58,12 @@ async function thermalize(input) {
   console.log(`${input} -> ${output} (${info.width}x${info.height})`);
 }
 
-const inputs = process.argv.slice(2);
+const args = process.argv.slice(2);
+const liftArg = args.find((a) => a.startsWith("--lift="));
+const lift = liftArg ? Number(liftArg.split("=")[1]) : 1;
+const inputs = args.filter((a) => !a.startsWith("--"));
 if (!inputs.length) {
   console.error("Usage: node scripts/thermalize.mjs <image> [...images]");
   process.exit(1);
 }
-for (const input of inputs) await thermalize(input);
+for (const input of inputs) await thermalize(input, lift);
