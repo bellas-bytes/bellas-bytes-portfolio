@@ -1,6 +1,5 @@
 import ThermalImage from "./ThermalImage";
 import GrainientBackground from "./GrainientBackground";
-import CoffeeRing from "./CoffeeRing";
 import { useEffect, useState } from "react";
 import { leadership } from "../data/leadership";
 import { experiences } from "../data/experiences";
@@ -291,7 +290,6 @@ export default function ReceiptPortfolio() {
                 </span>
                 probably thinking about my next coffee
               </p>
-              <CoffeeRing />
             </div>
           </section>
           <section id="experience" className="receipt-section">

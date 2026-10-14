@@ -1018,15 +1018,12 @@ a {
   }
 }
 
-/* The intro footnote, with a coffee ring stained into the paper beside it. */
+/* The footnote to the asterisk in "Hi, I'm Isabella*". */
 .intro-footnote {
-  position: relative;
   clear: both;
-  min-height: 118px;
   padding-top: 22px;
 }
 .intro-footnote p {
-  max-width: 60%;
   margin: 0;
   font-size: 13px;
   line-height: 1.6;
@@ -1035,27 +1032,6 @@ a {
 .footnote-mark {
   color: var(--red);
   margin-right: 6px;
-}
-.coffee-ring {
-  position: absolute;
-  right: 4px;
-  top: -34px;
-  width: 136px;
-  height: 136px;
-  color: #6b3f1d;
-  transform: rotate(-18deg);
-  mix-blend-mode: multiply;
-  pointer-events: none;
-}
-@media (max-width: 640px) {
-  .intro-footnote {
-    min-height: 96px;
-  }
-  .coffee-ring {
-    width: 100px;
-    height: 100px;
-    right: -14px;
-  }
 }
 
 .project-meta {
