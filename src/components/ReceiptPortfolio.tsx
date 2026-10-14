@@ -224,7 +224,7 @@ export default function ReceiptPortfolio() {
             <p>
               Developer. Curious human.
               <br />
-              Building the behind the scenes.
+              I build the infrastructure and tools that help teams ship faster.
             </p>
             <div className="receipt-order">
               <span>ORDER #0001</span>
@@ -242,8 +242,8 @@ export default function ReceiptPortfolio() {
               <ThermalImage
                 src={`${process.env.PUBLIC_URL}/images/portraits/isabella.png`}
                 alt="Isabella wearing glasses and making a peace sign"
-                width="1448"
-                height="1086"
+                width="960"
+                height="720"
                 loading="eager"
               />
             </figure>
@@ -356,8 +356,8 @@ export default function ReceiptPortfolio() {
                       <ThermalImage
                         src={`${process.env.PUBLIC_URL}/images/projects/${project.preview.image}`}
                         alt={project.preview.alt}
-                        width={project.id === "proj-1" ? 806 : 1280}
-                        height={project.id === "proj-1" ? 454 : 850}
+                        width={project.id === "proj-1" ? 806 : 960}
+                        height={project.id === "proj-1" ? 454 : 638}
                         loading="lazy"
                       />
                     </a>

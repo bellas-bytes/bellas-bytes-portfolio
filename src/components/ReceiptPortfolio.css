@@ -1126,7 +1126,3 @@ a {
   padding-top: 20px;
 }
 
-img[data-thermal="fallback"] {
-  filter: grayscale(1);
-  mix-blend-mode: multiply;
-}
