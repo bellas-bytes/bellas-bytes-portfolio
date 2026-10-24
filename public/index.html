@@ -46,6 +46,20 @@
     </style>
   </head>
   <body>
+    <noscript>
+      <style>
+        .receipt-scene[data-arrival] .receipt-paper {
+          transform: none;
+          visibility: visible;
+        }
+        .receipt-scene[data-arrival] .receipt-nav {
+          visibility: visible;
+        }
+        .receipt-arrival, .printer {
+          display: none;
+        }
+      </style>
+    </noscript>
     <div id="root"></div>
   </body>
 </html>
