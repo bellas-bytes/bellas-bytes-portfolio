@@ -302,9 +302,9 @@ export default function ReceiptPortfolio() {
             <figure className="intro-portrait">
               <ThermalImage
                 src={`${process.env.PUBLIC_URL}/images/portraits/isabella.png`}
-                alt="Isabella wearing glasses and making a peace sign"
+                alt="Isabella smiling, wearing glasses and a white sweater"
                 width="960"
-                height="720"
+                height="947"
                 loading="eager"
               />
             </figure>
