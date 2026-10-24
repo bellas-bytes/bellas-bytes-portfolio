@@ -1,6 +1,6 @@
 import ThermalImage from "./ThermalImage";
 import GrainientBackground from "./GrainientBackground";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { leadership } from "../data/leadership";
 import { experiences } from "../data/experiences";
 import { projects } from "../data/projects";
@@ -33,7 +33,9 @@ function ReceiptHeading({ number, title }: { number: string; title: string }) {
   );
 }
 
-function Printer() {
+type ArrivalPhase = "welcome" | "printing" | "ready";
+
+function Printer({ arrival }: { arrival: ArrivalPhase }) {
   const [progress, setProgress] = useState(0);
   const [feeding, setFeeding] = useState(false);
   // Full-size printer on arrival; it tucks down once you start reading.
@@ -89,7 +91,7 @@ function Printer() {
 
   return (
     <footer
-      className={`printer${feeding ? " is-feeding" : ""}${compact ? " is-compact" : ""}`}
+      className={`printer${feeding || arrival === "printing" ? " is-feeding" : ""}${compact ? " is-compact" : ""}`}
       aria-label="Receipt printer"
     >
       <div className="printer-slot" aria-hidden="true" />
@@ -101,17 +103,22 @@ function Printer() {
           <div className="printer-display">
             <span className="printer-led" />{" "}
             <span>
-              {progress === 100
-                ? "ALL PRINTED"
-                : feeding
+              {arrival === "welcome"
+                ? "WARMING UP"
+                : arrival === "printing"
                   ? "PRINTING"
-                  : "READY"}
+                  : progress === 100
+                    ? "ALL PRINTED"
+                    : feeding
+                      ? "PRINTING"
+                      : "READY"}
             </span>
             <span>{String(progress).padStart(2, "0")}%</span>
           </div>
           <button
             type="button"
             onClick={feed}
+            disabled={arrival !== "ready"}
             className="feed-button"
             aria-label={
               progress === 100
@@ -129,6 +136,47 @@ function Printer() {
 
 export default function ReceiptPortfolio() {
   const [activeSection, setActiveSection] = useState("");
+  const [arrival, setArrival] = useState<ArrivalPhase>("welcome");
+  const paperRef = useRef<HTMLElement>(null);
+  const isArriving = arrival !== "ready";
+
+  useEffect(() => {
+    if (!isArriving) return;
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    // Preserve deep links and browser-restored reading positions.
+    if (motion.matches || window.location.hash || window.scrollY > 0) {
+      setArrival("ready");
+      return;
+    }
+
+    const root = document.documentElement;
+    const body = document.body;
+    const paper = paperRef.current;
+    const previousRootOverflow = root.style.overflow;
+    const previousBodyOverflow = body.style.overflow;
+    root.style.overflow = "hidden";
+    body.style.overflow = "hidden";
+    paper?.setAttribute("inert", "");
+
+    const finish = () => setArrival("ready");
+    const onMotionChange = () => {
+      if (motion.matches) finish();
+    };
+    const greeting = window.setTimeout(() => setArrival("printing"), 900);
+    // Release the page even if the browser never dispatches animationend.
+    const fallback = window.setTimeout(finish, 4000);
+    motion.addEventListener("change", onMotionChange);
+    window.addEventListener("hashchange", finish);
+    return () => {
+      window.clearTimeout(greeting);
+      window.clearTimeout(fallback);
+      motion.removeEventListener("change", onMotionChange);
+      window.removeEventListener("hashchange", finish);
+      root.style.overflow = previousRootOverflow;
+      body.style.overflow = previousBodyOverflow;
+      paper?.removeAttribute("inert");
+    };
+  }, [isArriving]);
   useEffect(() => {
     let frame = 0;
     const measure = () => {
@@ -157,9 +205,9 @@ export default function ReceiptPortfolio() {
     };
   }, []);
   return (
-    <div className="receipt-scene thermal-colors">
+    <div className="receipt-scene thermal-colors" data-arrival={arrival}>
       <GrainientBackground />
-      <a className="skip-link" href="#about">
+      <a className="skip-link" href="#about" onClick={() => setArrival("ready")}>
         Skip to content
       </a>
       <header className="desk-header">
@@ -201,7 +249,27 @@ export default function ReceiptPortfolio() {
           <p className="coffee-card-note">come back for a refill.</p>
         </div>
       </aside>
-      <main id="top" className="receipt-paper">
+      <div className="receipt-arrival" role="status" aria-live="polite">
+        <p className="arrival-greeting">Hey, glad you’re here.</p>
+        <p className="arrival-caption">
+          {arrival === "ready"
+            ? "Scroll to print the rest ↓"
+            : "Printing a little about me…"}
+        </p>
+      </div>
+      <main
+        id="top"
+        className="receipt-paper"
+        ref={paperRef}
+        onAnimationEnd={(event) => {
+          if (
+            event.target === event.currentTarget &&
+            event.animationName === "receipt-arrival"
+          ) {
+            setArrival("ready");
+          }
+        }}
+      >
         <div className="receipt-inner">
           <header className="receipt-masthead">
             <div className="receipt-topline">
@@ -234,9 +302,9 @@ export default function ReceiptPortfolio() {
             <figure className="intro-portrait">
               <ThermalImage
                 src={`${process.env.PUBLIC_URL}/images/portraits/isabella.png`}
-                alt="Isabella wearing glasses and making a peace sign"
+                alt="Isabella smiling, wearing glasses and a white sweater"
                 width="960"
-                height="720"
+                height="947"
                 loading="eager"
               />
             </figure>
@@ -555,7 +623,7 @@ export default function ReceiptPortfolio() {
           </section>
         </div>
       </main>
-      <Printer />
+      <Printer arrival={arrival} />
     </div>
   );
 }
